@@ -501,3 +501,71 @@ module VCR::RSpec
 end
 module VCR::Middleware
 end
+module VCR::Cassette::Persisters::FileSystem
+  def [](file_name); end
+  def []=(file_name, content); end
+  def absolute_path_for(path); end
+  def absolute_path_to_file(file_name); end
+  def sanitized_file_name_from(file_name); end
+  def storage_location; end
+  def storage_location=(dir); end
+  extend VCR::Cassette::Persisters::FileSystem
+end
+class VCR::VersionChecker
+  def check_version!; end
+  def compare_version; end
+  def initialize(library_name, library_version, min_version); end
+  def parse_version(version); end
+  def raise_too_low_error; end
+  def too_low?; end
+  def version_requirement; end
+end
+class VCR::RequestHandler
+  def disabled?; end
+  def externally_stubbed?; end
+  def handle; end
+  def has_response_stub?(consume_stub); end
+  def invoke_after_request_hook(vcr_response); end
+  def invoke_before_request_hook; end
+  def library_name; end
+  def log_prefix; end
+  def on_externally_stubbed_request; end
+  def on_ignored_request; end
+  def on_recordable_request; end
+  def on_stubbed_by_vcr_request; end
+  def on_unhandled_request; end
+  def request_summary; end
+  def request_type(consume_stub = nil); end
+  def set_typed_request_for_after_hook(request_type); end
+  def should_ignore?; end
+  def stubbed_response; end
+  include VCR::Logger::Mixin
+end
+module VCR::LibraryHooks::WebMock
+  def global_hook_disabled?(request); end
+  def global_hook_disabled_requests; end
+  def with_global_hook_disabled(request); end
+  extend VCR::LibraryHooks::WebMock
+  extend VCR::LibraryHooks::WebMock::Helpers
+end
+module VCR::LibraryHooks::WebMock::Helpers
+  def request_headers_for(webmock_request); end
+  def typed_request_for(webmock_request, remove = nil); end
+  def vcr_request_for(webmock_request); end
+  def vcr_response_for(webmock_response); end
+end
+class VCR::LibraryHooks::WebMock::RequestHandler < VCR::RequestHandler
+  def externally_stubbed?; end
+  def initialize(request); end
+  def on_externally_stubbed_request; end
+  def on_stubbed_by_vcr_request; end
+  def on_unhandled_request; end
+  def request; end
+  def set_typed_request_for_after_hook(*args); end
+  def vcr_request; end
+  include VCR::LibraryHooks::WebMock::Helpers
+end
+module WebMock
+  def self.net_connect_allowed_with_vcr?(*args); end
+  def self.net_connect_allowed_without_vcr?(uri = nil); end
+end

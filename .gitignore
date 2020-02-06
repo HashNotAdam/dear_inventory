@@ -5,8 +5,11 @@
 /coverage/
 /doc/
 /pkg/
-/spec/reports/
 /tmp/
+
+# Specs
+/spec/reports/
+/spec/examples.txt
 
 # rspec failure tracking
 .rspec_status

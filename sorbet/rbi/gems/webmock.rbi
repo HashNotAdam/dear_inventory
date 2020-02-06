@@ -27,7 +27,7 @@ module WebMock
   def self.hide_body_diff!; end
   def self.hide_stubbing_instructions!; end
   def self.included(clazz); end
-  def self.net_connect_allowed?(uri = nil); end
+  def self.net_connect_allowed?(*args); end
   def self.net_connect_explicit_allowed?(allowed, uri = nil); end
   def self.print_executed_requests; end
   def self.registered_request?(request_signature); end
@@ -128,6 +128,11 @@ class WebMock::HashValidator
   def validate_keys(*valid_keys); end
 end
 module WebMock::Matchers
+  def have_been_made; end
+  def have_been_requested; end
+  def have_not_been_made; end
+  def have_not_requested(method, uri); end
+  def have_requested(method, uri); end
 end
 class WebMock::Matchers::HashArgumentMatcher
   def ==(_actual, &block); end
@@ -364,7 +369,6 @@ class WebMock::Config
   def query_values_notation; end
   def query_values_notation=(arg0); end
   def self.allocate; end
-  def self.instance; end
   def self.new(*arg0); end
   def show_body_diff; end
   def show_body_diff=(arg0); end
@@ -386,7 +390,6 @@ class WebMock::RequestRegistry
   def requested_signatures=(arg0); end
   def reset!; end
   def self.allocate; end
-  def self.instance; end
   def self.new(*arg0); end
   def times_executed(request_pattern); end
   def to_s; end
@@ -407,7 +410,6 @@ class WebMock::StubRegistry
   def reset!; end
   def response_for_request(request_signature); end
   def self.allocate; end
-  def self.instance; end
   def self.new(*arg0); end
   extend Singleton::SingletonClassMethods
   include Singleton
@@ -437,7 +439,6 @@ class WebMock::HttpLibAdapterRegistry
   def initialize; end
   def register(lib, adapter); end
   def self.allocate; end
-  def self.instance; end
   def self.new(*arg0); end
   extend Singleton::SingletonClassMethods
   include Singleton
@@ -518,4 +519,46 @@ class WebMock::HttpLibAdapters::HttpRbAdapter < WebMock::HttpLibAdapter
   def self.disable!; end
   def self.enable!; end
   def self.enabled?; end
+end
+class WebMock::RequestPatternMatcher
+  def at_least_once; end
+  def at_least_times(times); end
+  def at_least_twice; end
+  def at_most_once; end
+  def at_most_times(times); end
+  def at_most_twice; end
+  def description; end
+  def does_not_match?(request_pattern); end
+  def failure_message; end
+  def failure_message_when_negated; end
+  def initialize; end
+  def matches?(request_pattern); end
+  def negative_failure_message; end
+  def once; end
+  def times(times); end
+  def twice; end
+end
+class WebMock::WebMockMatcher
+  def at_least_once; end
+  def at_least_times(times); end
+  def at_least_twice; end
+  def description; end
+  def does_not_match?(webmock); end
+  def failure_message; end
+  def failure_message_when_negated; end
+  def initialize(method, uri); end
+  def matches?(webmock); end
+  def negative_failure_message; end
+  def once; end
+  def times(times); end
+  def twice; end
+  def with(options = nil, &block); end
+end
+class RSpec::ExampleGroups::DearInventoryConfig < RSpec::Core::ExampleGroup
+  include WebMock::API
+  include WebMock::Matchers
+end
+class RSpec::ExampleGroups::DearInventory < RSpec::Core::ExampleGroup
+  include WebMock::API
+  include WebMock::Matchers
 end

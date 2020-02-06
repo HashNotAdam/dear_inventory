@@ -509,7 +509,6 @@ class HTTP::MimeType::Adapter
   def self.allocate; end
   def self.decode(*args, &block); end
   def self.encode(*args, &block); end
-  def self.instance; end
   def self.new(*arg0); end
   extend Singleton::SingletonClassMethods
   include Singleton
@@ -517,7 +516,6 @@ end
 class HTTP::MimeType::JSON < HTTP::MimeType::Adapter
   def decode(str); end
   def encode(obj); end
-  def self.instance; end
 end
 class HTTP::Response::Status < Delegator
   def __getobj__; end
