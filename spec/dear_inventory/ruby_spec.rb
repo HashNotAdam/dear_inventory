@@ -1,9 +1,7 @@
-RSpec.describe DearInventory::Ruby do
-  it "has a version number" do
-    expect(DearInventory::Ruby::VERSION).not_to be nil
-  end
+# frozen_string_literal: true
 
-  it "does something useful" do
-    expect(false).to eq(true)
+RSpec.describe DearInventory do
+  it "has a version number" do
+    expect(DearInventory::VERSION).not_to be nil
   end
 end

@@ -1,5 +1,9 @@
+# frozen_string_literal: true
+
 require "bundler/setup"
-require "dear_inventory/ruby"
+require "dear_inventory"
+require "faker"
+require "webmock/rspec"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
