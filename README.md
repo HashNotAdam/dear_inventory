@@ -43,6 +43,15 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 git commits and tags, and push the `.gem` file to
 [rubygems.org](https://rubygems.org).
 
+Since it is necessary to authenticate with DEAR Inventory to test API resources,
+credentials are required. The dotenv gem is loaded when tests are run and will
+look for a .env file in the root directory. A .env.example file has been
+supplied so you copy it to .env and replace the example values:
+
+```sh
+cp .env.example .env
+```
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/HashNotAdam/dear_inventory. This project is intended to be a safe, welcoming

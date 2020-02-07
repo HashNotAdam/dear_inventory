@@ -3,6 +3,7 @@
 
 require "bundler/setup"
 require "dear_inventory"
+require "dotenv/load"
 require "webmock/rspec"
 
 ENV["ENV"] = "test"
@@ -80,6 +81,8 @@ RSpec.configure do |config|
   # voiding a card can not be performed out of order
   config.order = :defined
 end
+
+Dir[File.dirname(__FILE__) + "/helpers/**/*.rb"].each { |f| require f }
 
 require "vcr"
 VCR.configure do |config|
