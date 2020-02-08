@@ -15,10 +15,10 @@ module DearInventory
       DearInventory::Environment.set(value)
     end
 
-    sig { returns(String) }
+    sig { returns(T.nilable(String)) }
     attr_accessor :account_id
 
-    sig { returns(String) }
+    sig { returns(T.nilable(String)) }
     attr_accessor :key
 
     sig { params(param: Symbol).returns(String) }
@@ -46,7 +46,7 @@ module DearInventory
       raise(
         ArgumentError,
         "#{param} is required but hasn't been set.\n" \
-          "DearInventory::Config.configuration do |config|\n" +
+          "DearInventory.configure do |config|\n" +
           %(  config.#{param} = "value") + "\n" \
           "end"
       )

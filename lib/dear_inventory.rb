@@ -7,9 +7,26 @@ require "sorbet-runtime"
 require "dear_inventory/config"
 require "dear_inventory/environment"
 
+require "dear_inventory/error"
+require "dear_inventory/errors/request"
+require "dear_inventory/errors/validation"
+
+require "dear_inventory/lib/endpoint_class"
+require "dear_inventory/lib/is_a_subclass"
+
+require "dear_inventory/parameters"
+
+require "dear_inventory/resource"
+
+require "dear_inventory/response"
+
+require "dear_inventory/validator"
+
 require "dear_inventory/version"
 
 module DearInventory
+  extend T::Sig
+
   @config = T.let(Config.new, Config)
 
   class << self

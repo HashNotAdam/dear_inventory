@@ -2357,6 +2357,15 @@
 # Did you mean?  initialize_dup
 # wrong constant name initialize<defaultArg>1
 # wrong constant name initialize
+# wrong constant name account_id
+# wrong constant name account_id=
+# wrong constant name environment
+# wrong constant name environment=
+# wrong constant name key
+# wrong constant name key=
+# wrong constant name require
+# wrong constant name require_parameter
+# wrong constant name <static-init>
 # wrong constant name <static-init>
 # wrong constant name production?
 # wrong constant name set
@@ -6019,8 +6028,8 @@
 # uninitialized constant RDoc::RD::BlockParser::Racc_Runtime_Core_Version
 # Did you mean?  RDoc::RD::BlockParser::Racc_Runtime_Revision
 #                RDoc::RD::BlockParser::Racc_Runtime_Core_Revision
-#                RDoc::RD::BlockParser::Racc_Runtime_Core_Version_C
 #                RDoc::RD::BlockParser::Racc_Runtime_Core_Version_R
+#                RDoc::RD::BlockParser::Racc_Runtime_Core_Version_C
 #                RDoc::RD::BlockParser::Racc_Runtime_Core_Revision_C
 #                RDoc::RD::BlockParser::Racc_Runtime_Core_Revision_R
 #                RDoc::RD::BlockParser::Racc_Runtime_Version
@@ -6161,8 +6170,8 @@
 # uninitialized constant RDoc::RD::InlineParser::Racc_Runtime_Core_Version
 # Did you mean?  RDoc::RD::InlineParser::Racc_Runtime_Revision
 #                RDoc::RD::InlineParser::Racc_Runtime_Core_Revision
-#                RDoc::RD::InlineParser::Racc_Runtime_Core_Version_C
 #                RDoc::RD::InlineParser::Racc_Runtime_Core_Version_R
+#                RDoc::RD::InlineParser::Racc_Runtime_Core_Version_C
 #                RDoc::RD::InlineParser::Racc_Runtime_Core_Revision_C
 #                RDoc::RD::InlineParser::Racc_Runtime_Core_Revision_R
 #                RDoc::RD::InlineParser::Racc_Runtime_Version
@@ -7727,11 +7736,6 @@
 # uninitialized constant RSpec::Core::ExampleGroup::HAS_REGEX
 # uninitialized constant RSpec::Core::ExampleGroup::NOT_YET_IMPLEMENTED
 # uninitialized constant RSpec::Core::ExampleGroup::NO_REASON_GIVEN
-# wrong constant name initialize
-# wrong constant name persist
-# wrong constant name <static-init>
-# wrong constant name load_from
-# wrong constant name persist
 # wrong constant name example_failed
 # wrong constant name example_finished
 # wrong constant name initialize
@@ -7980,7 +7984,7 @@
 # wrong constant name <static-init>
 # wrong constant name worse_than?
 # wrong constant name +
-# uninitialized constant #<Class:0x00007fb7f009f1f0>::Elem
+# uninitialized constant #<Class:0x00007f8d01788e18>::Elem
 # wrong constant name candidate?
 # wrong constant name ideal?
 # wrong constant name indeterminate_actual_indexes
@@ -9198,25 +9202,25 @@
 # uninitialized constant Ripper::Lexer::EVENTS
 # Did you mean?  Ripper::EVENTS
 # uninitialized constant Ripper::Lexer::EXPR_ARG
-# Did you mean?  Ripper::EXPR_BEG
+# Did you mean?  Ripper::Lexer::EXPR_BEG
 #                Ripper::EXPR_ARG
-#                Ripper::Lexer::EXPR_BEG
+#                Ripper::EXPR_BEG
 # uninitialized constant Ripper::Lexer::EXPR_ARG_ANY
-# Did you mean?  Ripper::Lexer::EXPR_BEG_ANY
-#                Ripper::EXPR_END_ANY
+# Did you mean?  Ripper::Lexer::EXPR_END_ANY
 #                Ripper::EXPR_BEG_ANY
-#                Ripper::Lexer::EXPR_END_ANY
+#                Ripper::EXPR_END_ANY
 #                Ripper::EXPR_ARG_ANY
+#                Ripper::Lexer::EXPR_BEG_ANY
 # uninitialized constant Ripper::Lexer::EXPR_BEG
 # Did you mean?  Ripper::Lexer::EXPR_ARG
-#                Ripper::EXPR_BEG
 #                Ripper::EXPR_ARG
+#                Ripper::EXPR_BEG
 # uninitialized constant Ripper::Lexer::EXPR_BEG_ANY
-# Did you mean?  Ripper::EXPR_BEG_ANY
-#                Ripper::Lexer::EXPR_END_ANY
+# Did you mean?  Ripper::EXPR_END_ANY
 #                Ripper::Lexer::EXPR_ARG_ANY
 #                Ripper::EXPR_ARG_ANY
-#                Ripper::EXPR_END_ANY
+#                Ripper::EXPR_BEG_ANY
+#                Ripper::Lexer::EXPR_END_ANY
 # uninitialized constant Ripper::Lexer::EXPR_CLASS
 # Did you mean?  Ripper::EXPR_CLASS
 # uninitialized constant Ripper::Lexer::EXPR_CMDARG
@@ -9228,11 +9232,11 @@
 # uninitialized constant Ripper::Lexer::EXPR_DOT
 # Did you mean?  Ripper::EXPR_DOT
 # uninitialized constant Ripper::Lexer::EXPR_END
-# Did you mean?  Ripper::Lexer::EXPR_MID
-#                Ripper::EXPR_MID
+# Did you mean?  Ripper::EXPR_MID
 #                Ripper::EXPR_END
-#                Ripper::Lexer::EXPR_ENDFN
+#                Ripper::Lexer::EXPR_MID
 #                Ripper::EXPR_ENDFN
+#                Ripper::Lexer::EXPR_ENDFN
 # uninitialized constant Ripper::Lexer::EXPR_ENDARG
 # Did you mean?  Ripper::Lexer::EXPR_ARG
 #                Ripper::EXPR_ARG
@@ -9242,8 +9246,8 @@
 #                Ripper::Lexer::EXPR_CMDARG
 #                Ripper::EXPR_CMDARG
 #                Ripper::EXPR_ENDARG
-#                Ripper::Lexer::EXPR_END_ANY
 #                Ripper::EXPR_END_ANY
+#                Ripper::Lexer::EXPR_END_ANY
 # uninitialized constant Ripper::Lexer::EXPR_ENDFN
 # Did you mean?  Ripper::EXPR_END
 #                Ripper::EXPR_ENDFN
@@ -9252,20 +9256,20 @@
 #                Ripper::Lexer::EXPR_END_ANY
 #                Ripper::EXPR_END_ANY
 # uninitialized constant Ripper::Lexer::EXPR_END_ANY
-# Did you mean?  Ripper::EXPR_END_ANY
+# Did you mean?  Ripper::Lexer::EXPR_BEG_ANY
 #                Ripper::Lexer::EXPR_ARG_ANY
-#                Ripper::Lexer::EXPR_BEG_ANY
-#                Ripper::EXPR_ARG_ANY
 #                Ripper::EXPR_BEG_ANY
+#                Ripper::EXPR_ARG_ANY
+#                Ripper::EXPR_END_ANY
 #                Ripper::Lexer::EXPR_ENDFN
 #                Ripper::EXPR_ENDFN
-#                Ripper::Lexer::EXPR_ENDARG
 #                Ripper::EXPR_ENDARG
+#                Ripper::Lexer::EXPR_ENDARG
 # uninitialized constant Ripper::Lexer::EXPR_FITEM
 # Did you mean?  Ripper::EXPR_FITEM
 # uninitialized constant Ripper::Lexer::EXPR_FNAME
-# Did you mean?  Ripper::Lexer::EXPR_NONE
-#                Ripper::EXPR_NONE
+# Did you mean?  Ripper::EXPR_NONE
+#                Ripper::Lexer::EXPR_NONE
 #                Ripper::EXPR_FNAME
 # uninitialized constant Ripper::Lexer::EXPR_LABEL
 # Did you mean?  Ripper::EXPR_BEG
@@ -9281,10 +9285,10 @@
 #                Ripper::EXPR_MID
 #                Ripper::EXPR_END
 # uninitialized constant Ripper::Lexer::EXPR_NONE
-# Did you mean?  Ripper::Lexer::EXPR_DOT
-#                Ripper::Lexer::EXPR_END
-#                Ripper::EXPR_DOT
+# Did you mean?  Ripper::Lexer::EXPR_END
+#                Ripper::Lexer::EXPR_DOT
 #                Ripper::EXPR_END
+#                Ripper::EXPR_DOT
 #                Ripper::EXPR_NONE
 #                Ripper::Lexer::EXPR_FNAME
 #                Ripper::EXPR_FNAME
@@ -9344,25 +9348,25 @@
 # uninitialized constant Ripper::SexpBuilder::EVENTS
 # Did you mean?  Ripper::EVENTS
 # uninitialized constant Ripper::SexpBuilder::EXPR_ARG
-# Did you mean?  Ripper::EXPR_BEG
+# Did you mean?  Ripper::SexpBuilder::EXPR_BEG
 #                Ripper::EXPR_ARG
-#                Ripper::SexpBuilder::EXPR_BEG
+#                Ripper::EXPR_BEG
 # uninitialized constant Ripper::SexpBuilder::EXPR_ARG_ANY
-# Did you mean?  Ripper::SexpBuilder::EXPR_BEG_ANY
-#                Ripper::EXPR_END_ANY
+# Did you mean?  Ripper::SexpBuilder::EXPR_END_ANY
 #                Ripper::EXPR_BEG_ANY
-#                Ripper::SexpBuilder::EXPR_END_ANY
+#                Ripper::EXPR_END_ANY
 #                Ripper::EXPR_ARG_ANY
+#                Ripper::SexpBuilder::EXPR_BEG_ANY
 # uninitialized constant Ripper::SexpBuilder::EXPR_BEG
 # Did you mean?  Ripper::SexpBuilder::EXPR_ARG
-#                Ripper::EXPR_BEG
 #                Ripper::EXPR_ARG
+#                Ripper::EXPR_BEG
 # uninitialized constant Ripper::SexpBuilder::EXPR_BEG_ANY
-# Did you mean?  Ripper::EXPR_BEG_ANY
-#                Ripper::SexpBuilder::EXPR_END_ANY
+# Did you mean?  Ripper::EXPR_END_ANY
 #                Ripper::SexpBuilder::EXPR_ARG_ANY
 #                Ripper::EXPR_ARG_ANY
-#                Ripper::EXPR_END_ANY
+#                Ripper::EXPR_BEG_ANY
+#                Ripper::SexpBuilder::EXPR_END_ANY
 # uninitialized constant Ripper::SexpBuilder::EXPR_CLASS
 # Did you mean?  Ripper::EXPR_CLASS
 # uninitialized constant Ripper::SexpBuilder::EXPR_CMDARG
@@ -9374,11 +9378,11 @@
 # uninitialized constant Ripper::SexpBuilder::EXPR_DOT
 # Did you mean?  Ripper::EXPR_DOT
 # uninitialized constant Ripper::SexpBuilder::EXPR_END
-# Did you mean?  Ripper::SexpBuilder::EXPR_MID
-#                Ripper::EXPR_MID
+# Did you mean?  Ripper::EXPR_MID
 #                Ripper::EXPR_END
-#                Ripper::SexpBuilder::EXPR_ENDFN
+#                Ripper::SexpBuilder::EXPR_MID
 #                Ripper::EXPR_ENDFN
+#                Ripper::SexpBuilder::EXPR_ENDFN
 # uninitialized constant Ripper::SexpBuilder::EXPR_ENDARG
 # Did you mean?  Ripper::SexpBuilder::EXPR_ARG
 #                Ripper::EXPR_ARG
@@ -9388,8 +9392,8 @@
 #                Ripper::SexpBuilder::EXPR_CMDARG
 #                Ripper::EXPR_CMDARG
 #                Ripper::EXPR_ENDARG
-#                Ripper::SexpBuilder::EXPR_END_ANY
 #                Ripper::EXPR_END_ANY
+#                Ripper::SexpBuilder::EXPR_END_ANY
 # uninitialized constant Ripper::SexpBuilder::EXPR_ENDFN
 # Did you mean?  Ripper::EXPR_END
 #                Ripper::EXPR_ENDFN
@@ -9398,20 +9402,20 @@
 #                Ripper::SexpBuilder::EXPR_END_ANY
 #                Ripper::EXPR_END_ANY
 # uninitialized constant Ripper::SexpBuilder::EXPR_END_ANY
-# Did you mean?  Ripper::EXPR_END_ANY
+# Did you mean?  Ripper::SexpBuilder::EXPR_BEG_ANY
 #                Ripper::SexpBuilder::EXPR_ARG_ANY
-#                Ripper::SexpBuilder::EXPR_BEG_ANY
-#                Ripper::EXPR_ARG_ANY
 #                Ripper::EXPR_BEG_ANY
+#                Ripper::EXPR_ARG_ANY
+#                Ripper::EXPR_END_ANY
 #                Ripper::SexpBuilder::EXPR_ENDFN
 #                Ripper::EXPR_ENDFN
-#                Ripper::SexpBuilder::EXPR_ENDARG
 #                Ripper::EXPR_ENDARG
+#                Ripper::SexpBuilder::EXPR_ENDARG
 # uninitialized constant Ripper::SexpBuilder::EXPR_FITEM
 # Did you mean?  Ripper::EXPR_FITEM
 # uninitialized constant Ripper::SexpBuilder::EXPR_FNAME
-# Did you mean?  Ripper::SexpBuilder::EXPR_NONE
-#                Ripper::EXPR_NONE
+# Did you mean?  Ripper::EXPR_NONE
+#                Ripper::SexpBuilder::EXPR_NONE
 #                Ripper::EXPR_FNAME
 # uninitialized constant Ripper::SexpBuilder::EXPR_LABEL
 # Did you mean?  Ripper::EXPR_BEG
@@ -9427,10 +9431,10 @@
 #                Ripper::EXPR_MID
 #                Ripper::EXPR_END
 # uninitialized constant Ripper::SexpBuilder::EXPR_NONE
-# Did you mean?  Ripper::SexpBuilder::EXPR_DOT
-#                Ripper::SexpBuilder::EXPR_END
-#                Ripper::EXPR_DOT
+# Did you mean?  Ripper::SexpBuilder::EXPR_END
+#                Ripper::SexpBuilder::EXPR_DOT
 #                Ripper::EXPR_END
+#                Ripper::EXPR_DOT
 #                Ripper::EXPR_NONE
 #                Ripper::SexpBuilder::EXPR_FNAME
 #                Ripper::EXPR_FNAME
@@ -9638,25 +9642,25 @@
 # uninitialized constant Ripper::SexpBuilderPP::EVENTS
 # Did you mean?  Ripper::EVENTS
 # uninitialized constant Ripper::SexpBuilderPP::EXPR_ARG
-# Did you mean?  Ripper::EXPR_BEG
+# Did you mean?  Ripper::SexpBuilderPP::EXPR_BEG
 #                Ripper::EXPR_ARG
-#                Ripper::SexpBuilderPP::EXPR_BEG
+#                Ripper::EXPR_BEG
 # uninitialized constant Ripper::SexpBuilderPP::EXPR_ARG_ANY
-# Did you mean?  Ripper::SexpBuilderPP::EXPR_BEG_ANY
-#                Ripper::EXPR_END_ANY
+# Did you mean?  Ripper::SexpBuilderPP::EXPR_END_ANY
 #                Ripper::EXPR_BEG_ANY
-#                Ripper::SexpBuilderPP::EXPR_END_ANY
+#                Ripper::EXPR_END_ANY
 #                Ripper::EXPR_ARG_ANY
+#                Ripper::SexpBuilderPP::EXPR_BEG_ANY
 # uninitialized constant Ripper::SexpBuilderPP::EXPR_BEG
 # Did you mean?  Ripper::SexpBuilderPP::EXPR_ARG
-#                Ripper::EXPR_BEG
 #                Ripper::EXPR_ARG
+#                Ripper::EXPR_BEG
 # uninitialized constant Ripper::SexpBuilderPP::EXPR_BEG_ANY
-# Did you mean?  Ripper::EXPR_BEG_ANY
-#                Ripper::SexpBuilderPP::EXPR_END_ANY
+# Did you mean?  Ripper::EXPR_END_ANY
 #                Ripper::SexpBuilderPP::EXPR_ARG_ANY
 #                Ripper::EXPR_ARG_ANY
-#                Ripper::EXPR_END_ANY
+#                Ripper::EXPR_BEG_ANY
+#                Ripper::SexpBuilderPP::EXPR_END_ANY
 # uninitialized constant Ripper::SexpBuilderPP::EXPR_CLASS
 # Did you mean?  Ripper::EXPR_CLASS
 # uninitialized constant Ripper::SexpBuilderPP::EXPR_CMDARG
@@ -9668,11 +9672,11 @@
 # uninitialized constant Ripper::SexpBuilderPP::EXPR_DOT
 # Did you mean?  Ripper::EXPR_DOT
 # uninitialized constant Ripper::SexpBuilderPP::EXPR_END
-# Did you mean?  Ripper::SexpBuilderPP::EXPR_MID
-#                Ripper::EXPR_MID
+# Did you mean?  Ripper::EXPR_MID
 #                Ripper::EXPR_END
-#                Ripper::SexpBuilderPP::EXPR_ENDFN
+#                Ripper::SexpBuilderPP::EXPR_MID
 #                Ripper::EXPR_ENDFN
+#                Ripper::SexpBuilderPP::EXPR_ENDFN
 # uninitialized constant Ripper::SexpBuilderPP::EXPR_ENDARG
 # Did you mean?  Ripper::SexpBuilderPP::EXPR_ARG
 #                Ripper::EXPR_ARG
@@ -9682,8 +9686,8 @@
 #                Ripper::SexpBuilderPP::EXPR_CMDARG
 #                Ripper::EXPR_CMDARG
 #                Ripper::EXPR_ENDARG
-#                Ripper::SexpBuilderPP::EXPR_END_ANY
 #                Ripper::EXPR_END_ANY
+#                Ripper::SexpBuilderPP::EXPR_END_ANY
 # uninitialized constant Ripper::SexpBuilderPP::EXPR_ENDFN
 # Did you mean?  Ripper::EXPR_END
 #                Ripper::EXPR_ENDFN
@@ -9692,20 +9696,20 @@
 #                Ripper::SexpBuilderPP::EXPR_END_ANY
 #                Ripper::EXPR_END_ANY
 # uninitialized constant Ripper::SexpBuilderPP::EXPR_END_ANY
-# Did you mean?  Ripper::EXPR_END_ANY
+# Did you mean?  Ripper::SexpBuilderPP::EXPR_BEG_ANY
 #                Ripper::SexpBuilderPP::EXPR_ARG_ANY
-#                Ripper::SexpBuilderPP::EXPR_BEG_ANY
-#                Ripper::EXPR_ARG_ANY
 #                Ripper::EXPR_BEG_ANY
+#                Ripper::EXPR_ARG_ANY
+#                Ripper::EXPR_END_ANY
 #                Ripper::SexpBuilderPP::EXPR_ENDFN
 #                Ripper::EXPR_ENDFN
-#                Ripper::SexpBuilderPP::EXPR_ENDARG
 #                Ripper::EXPR_ENDARG
+#                Ripper::SexpBuilderPP::EXPR_ENDARG
 # uninitialized constant Ripper::SexpBuilderPP::EXPR_FITEM
 # Did you mean?  Ripper::EXPR_FITEM
 # uninitialized constant Ripper::SexpBuilderPP::EXPR_FNAME
-# Did you mean?  Ripper::SexpBuilderPP::EXPR_NONE
-#                Ripper::EXPR_NONE
+# Did you mean?  Ripper::EXPR_NONE
+#                Ripper::SexpBuilderPP::EXPR_NONE
 #                Ripper::EXPR_FNAME
 # uninitialized constant Ripper::SexpBuilderPP::EXPR_LABEL
 # Did you mean?  Ripper::EXPR_BEG
@@ -9721,10 +9725,10 @@
 #                Ripper::EXPR_MID
 #                Ripper::EXPR_END
 # uninitialized constant Ripper::SexpBuilderPP::EXPR_NONE
-# Did you mean?  Ripper::SexpBuilderPP::EXPR_DOT
-#                Ripper::SexpBuilderPP::EXPR_END
-#                Ripper::EXPR_DOT
+# Did you mean?  Ripper::SexpBuilderPP::EXPR_END
+#                Ripper::SexpBuilderPP::EXPR_DOT
 #                Ripper::EXPR_END
+#                Ripper::EXPR_DOT
 #                Ripper::EXPR_NONE
 #                Ripper::SexpBuilderPP::EXPR_FNAME
 #                Ripper::EXPR_FNAME

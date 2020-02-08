@@ -2843,6 +2843,30 @@ class Date::Infinity
 end
 
 class DearInventory::Config
+  def account_id(*args, &blk); end
+
+  def account_id=(account_id); end
+
+  def environment(*args, &blk); end
+
+  def environment=(*args, &blk); end
+
+  def key(*args, &blk); end
+
+  def key=(key); end
+
+  def require(*args, &blk); end
+
+  def require_parameter(*args, &blk); end
+end
+
+class DearInventory::Config
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class DearInventory::EndpointClass
   extend ::T::Private::Methods::MethodHooks
   extend ::T::Private::Methods::SingletonMethodHooks
 end
@@ -2858,6 +2882,38 @@ class DearInventory::Environment
   def self.test?(); end
 
   def self.to_sym(); end
+end
+
+class DearInventory::Error
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+module DearInventory::Helpers::Config
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class DearInventory::Parameters
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class DearInventory::Resource
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class DearInventory::Response
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class DearInventory::Validator
+  extend ::T::Private::Abstract::Hooks
+  extend ::T::InterfaceWrapper::Helpers
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
 end
 
 module DearInventory
@@ -3082,6 +3138,10 @@ module DomainName::Punycode
   SKEW = ::T.let(nil, ::T.untyped)
   TMAX = ::T.let(nil, ::T.untyped)
   TMIN = ::T.let(nil, ::T.untyped)
+end
+
+class Dotenv::Parser
+  LINE = ::T.let(nil, ::T.untyped)
 end
 
 class ERB
@@ -12591,18 +12651,6 @@ class RSpec::Core::ExampleGroup
   include ::RSpec::Mocks::ExampleMethods::ExpectHost
   include ::RSpec::Matchers
   INSTANCE_VARIABLE_TO_IGNORE = ::T.let(nil, ::T.untyped)
-end
-
-class RSpec::Core::ExampleStatusPersister
-  def initialize(examples, file_name); end
-
-  def persist(); end
-end
-
-class RSpec::Core::ExampleStatusPersister
-  def self.load_from(file_name); end
-
-  def self.persist(examples, file_name); end
 end
 
 class RSpec::Core::FilterRules

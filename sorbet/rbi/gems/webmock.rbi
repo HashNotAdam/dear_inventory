@@ -558,6 +558,10 @@ class RSpec::ExampleGroups::DearInventoryConfig < RSpec::Core::ExampleGroup
   include WebMock::API
   include WebMock::Matchers
 end
+class RSpec::ExampleGroups::DearInventoryResource < RSpec::Core::ExampleGroup
+  include WebMock::API
+  include WebMock::Matchers
+end
 class RSpec::ExampleGroups::DearInventory < RSpec::Core::ExampleGroup
   include WebMock::API
   include WebMock::Matchers
