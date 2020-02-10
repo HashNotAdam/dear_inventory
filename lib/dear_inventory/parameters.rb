@@ -17,7 +17,9 @@ module DearInventory
 
       sig do
         params(
-          fields: T::Hash[Symbol, T::Hash[Symbol, T.any(Symbol, T::Boolean)]]
+          fields: T::Hash[
+            Symbol, T::Hash[Symbol, T.any(Symbol, T::Array[String], T::Boolean)]
+          ]
         ).void
       end
       def fields(fields)
@@ -29,7 +31,12 @@ module DearInventory
           )
 
           define_method("#{name}=") do |value|
-            validator.(name, value, limit: specifications[:limit])
+            validator.(
+              name,
+              value,
+              limit: specifications[:limit],
+              values: specifications[:values]
+            )
             @values[name] = value
           end
         end
@@ -86,7 +93,7 @@ module DearInventory
           value = @values[field_name]
 
           if specifications[:required]
-            Validators::Required.(field_name, value, limit: limit)
+            Validators::Required.(field_name, value)
           end
 
           next if value.nil?
