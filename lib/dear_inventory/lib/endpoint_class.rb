@@ -11,12 +11,7 @@ module DearInventory
         resource_class: T.class_of(DearInventory::Resource),
         endpoint: T.nilable(String)
       ).returns(
-        T.nilable(
-          T.any(
-            T.class_of(DearInventory::Parameters),
-            T.class_of(DearInventory::Response)
-          )
-        )
+        T.nilable(T.class_of(DearInventory::Parameters))
       )
     end
     def self.call(class_type:, resource_class:, endpoint:)
@@ -41,16 +36,7 @@ module DearInventory
       @class_name = T.let(nil, T.nilable(String))
     end
 
-    sig do
-      returns(
-        T.nilable(
-          T.any(
-            T.class_of(DearInventory::Parameters),
-            T.class_of(DearInventory::Response)
-          )
-        )
-      )
-    end
+    sig { returns(T.nilable(T.class_of(DearInventory::Parameters))) }
     def call
       Object.const_get(class_name) if Object.const_defined?(class_name)
     end

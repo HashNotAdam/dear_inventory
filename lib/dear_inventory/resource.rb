@@ -9,20 +9,18 @@ module DearInventory
     sig do
       params(
         action: Symbol,
+        model: T.class_of(DearInventory::Model),
         endpoint: T.nilable(String),
         params: T::Hash[Symbol, T.untyped]
       ).returns(DearInventory::Response)
     end
-    def request(action, endpoint: nil, params: {})
+    def request(action, model:, endpoint: nil, params: {})
       url = resource_url(endpoint)
       params = DearInventory::Parameters.convert(self.class, endpoint, params)
       options = request_params(action, params)
 
       response = HTTP.headers(headers).public_send(action, url, options)
-      response_class = DearInventory::EndpointClass.(
-        class_type: "Responses", resource_class: self.class, endpoint: endpoint
-      )
-      T.cast(response_class, T.class_of(DearInventory::Response)).new(response)
+      DearInventory::Response.new(response: response, model: model)
     end
 
     private

@@ -12,12 +12,11 @@ module DearInventory
       #   DearInventory::Parameters::SaleList::Index
       sig do
         params(params: T::Hash[Symbol, T.untyped]).
-          returns(DearInventory::Responses::SaleList::Index)
+          returns(DearInventory::Response)
       end
       def index(params: {})
-        T.cast(
-          new.request(:get, params: params),
-          DearInventory::Responses::SaleList::Index
+        new.request(
+          :get, params: params, model: DearInventory::Models::SaleLists
         )
       end
     end

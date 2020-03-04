@@ -35,8 +35,10 @@ require "dear_inventory/models/sales/fulfilments/pick_pack"
 require "dear_inventory/models/sales/fulfilments/ship_line"
 require "dear_inventory/models/sales/fulfilments/ship"
 require "dear_inventory/models/sales/fulfilment"
+require "dear_inventory/models/sale_lists"
 require "dear_inventory/models/sales/credit_note"
 require "dear_inventory/models/sales/invoice"
+require "dear_inventory/models/sale"
 
 require "dear_inventory/validator"
 require "dear_inventory/validators/boolean"
@@ -55,8 +57,6 @@ require "dear_inventory/resources/sale"
 require "dear_inventory/resources/sale_list"
 
 require "dear_inventory/response"
-require "dear_inventory/responses/sale/index"
-require "dear_inventory/responses/sale_list/index"
 
 require "dear_inventory/version"
 

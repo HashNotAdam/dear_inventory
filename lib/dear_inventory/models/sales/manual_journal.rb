@@ -14,7 +14,7 @@ module DearInventory
           },
           Lines: {
             name: :lines,
-            type: :Hash,
+            type: :Array,
             model: DearInventory::Models::Sales::ManualJournalLine,
           },
         })
