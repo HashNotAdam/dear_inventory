@@ -108,8 +108,6 @@ class Array
 
   def dig(*_); end
 
-  def filter!(); end
-
   def flatten!(*_); end
 
   def intersection(*_); end
@@ -2894,6 +2892,116 @@ module DearInventory::Helpers::Config
   extend ::T::Private::Methods::SingletonMethodHooks
 end
 
+module DearInventory::IsASubclass
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class DearInventory::Model
+  extend ::T::Private::Abstract::Hooks
+  extend ::T::InterfaceWrapper::Helpers
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class DearInventory::Models::SaleList
+  def base_currency(); end
+
+  def combined_invoice_status(); end
+
+  def combined_packing_status(); end
+
+  def combined_payment_status(); end
+
+  def combined_picking_status(); end
+
+  def combined_shipping_status(); end
+
+  def combined_tracking_numbers(); end
+
+  def credit_note_number(); end
+
+  def credit_note_status(); end
+
+  def customer(); end
+
+  def customer_currency(); end
+
+  def customer_id(); end
+
+  def customer_reference(); end
+
+  def external_id(); end
+
+  def fulfilment_status(); end
+
+  def id(); end
+
+  def invoice_amount(); end
+
+  def invoice_date(); end
+
+  def invoice_due_date(); end
+
+  def invoice_number(); end
+
+  def order_date(); end
+
+  def order_number(); end
+
+  def order_status(); end
+
+  def paid_amount(); end
+
+  def quote_status(); end
+
+  def ship_by(); end
+
+  def source_channel(); end
+
+  def status(); end
+
+  def type(); end
+
+  def updated(); end
+  FIELDS = ::T.let(nil, ::T.untyped)
+end
+
+class DearInventory::Parameters::SaleList::Index
+  def combined_invoice_status=(value); end
+
+  def combined_pack_status=(value); end
+
+  def combined_pick_status=(value); end
+
+  def combined_shipp_status=(value); end
+
+  def created_since=(value); end
+
+  def credit_note_status=(value); end
+
+  def external_id=(value); end
+
+  def limit=(value); end
+
+  def order_status=(value); end
+
+  def page=(value); end
+
+  def quote_status=(value); end
+
+  def ready_for_shipping=(value); end
+
+  def search=(value); end
+
+  def ship_by=(value); end
+
+  def status=(value); end
+
+  def updated_since=(value); end
+  FIELDS = ::T.let(nil, ::T.untyped)
+end
+
 class DearInventory::Parameters
   extend ::T::Private::Methods::MethodHooks
   extend ::T::Private::Methods::SingletonMethodHooks
@@ -2907,6 +3015,15 @@ end
 class DearInventory::Response
   extend ::T::Private::Methods::MethodHooks
   extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class DearInventory::Responses::SaleList::Index
+  def page(); end
+
+  def sale_list(); end
+
+  def total(); end
+  FIELDS = ::T.let(nil, ::T.untyped)
 end
 
 class DearInventory::Validator
@@ -3042,12 +3159,6 @@ class DidYouMean::PlainFormatter
 end
 
 class DidYouMean::PlainFormatter
-end
-
-class DidYouMean::SpellChecker
-  def correct(input); end
-
-  def initialize(dictionary:); end
 end
 
 class DidYouMean::TreeSpellChecker
@@ -3241,8 +3352,6 @@ module Enumerable
 
   def each_entry(*_); end
 
-  def filter(); end
-
   def filter_map(); end
 
   def grep_v(_); end
@@ -3260,8 +3369,6 @@ module Enumerable
   def to_set(klass=T.unsafe(nil), *args, &block); end
 
   def uniq(); end
-
-  def zip(*_); end
 end
 
 class Enumerator
@@ -3507,8 +3614,6 @@ class Etc::Passwd
 
   def change=(_); end
 
-  def dir(); end
-
   def dir=(_); end
 
   def expire(); end
@@ -3519,27 +3624,17 @@ class Etc::Passwd
 
   def gecos=(_); end
 
-  def gid(); end
-
   def gid=(_); end
-
-  def name(); end
 
   def name=(_); end
 
-  def passwd(); end
-
   def passwd=(_); end
-
-  def shell(); end
 
   def shell=(_); end
 
   def uclass(); end
 
   def uclass=(_); end
-
-  def uid(); end
 
   def uid=(_); end
 end
@@ -3910,9 +4005,6 @@ class FrozenError
   def receiver(); end
 end
 
-class FrozenError
-end
-
 module GC
   def garbage_collect(full_mark: T.unsafe(nil), immediate_mark: T.unsafe(nil), immediate_sweep: T.unsafe(nil)); end
 end
@@ -4281,13 +4373,9 @@ class Hash
 
   def fetch_values(*_); end
 
-  def filter!(); end
-
   def flatten(*_); end
 
   def index(_); end
-
-  def merge!(*_); end
 
   def replace(_); end
 
@@ -5176,8 +5264,6 @@ module Kernel
   def object_id(); end
 
   def pretty_inspect(); end
-
-  def respond_to?(*_); end
 
   def then(); end
 
@@ -12477,133 +12563,7 @@ end
 
 RSPEC_CONFIGURER = RSpec
 
-module RSpec
-end
-
-module RSpec::Core
-end
-
-class RSpec::Core::Example
-end
-
-RSPEC_NAMESPACE::Core::Example::AllExceptionsExcludingDangerousOnesOnRubiesThatAllowIt = RSpec::Support::AllExceptionsExceptOnesWeMustNotRescue
-
-class RSpec::Core::Example
-end
-
-RSPEC_NAMESPACE::Core::ExclusionRules = RSpec::Core::FilterRules
-
-RSPEC_NAMESPACE::Core::FilterRules = RSpec::Core::FilterRules
-
-module RSpec::Core::Formatters
-end
-
-class RSpec::Core::Formatters::SyntaxHighlighter
-end
-
-RSPEC_NAMESPACE::Core::Formatters::SyntaxHighlighter::NoSyntaxHighlightingImplementation = RSpec::Core::Formatters::SyntaxHighlighter::NoSyntaxHighlightingImplementation
-
-RSPEC_NAMESPACE::Core::Formatters::SyntaxHighlighter::WindowsImplementation = RSpec::Core::Formatters::SyntaxHighlighter::NoSyntaxHighlightingImplementation
-
-class RSpec::Core::Formatters::SyntaxHighlighter
-end
-
-module RSpec::Core::Formatters
-end
-
-module RSpec::Core::MockingAdapters
-end
-
-RSPEC_NAMESPACE::Core::MockingAdapters::RSpec = RSpec::Core::MockingAdapters::RSpec
-
-module RSpec::Core::MockingAdapters
-end
-
-RSPEC_NAMESPACE::Core::SharedContext = RSpec::Core::SharedContext
-
-module RSpec::Core
-end
-
-module RSpec::Expectations
-end
-
-class RSpec::Expectations::ExpectationTarget
-end
-
-RSPEC_NAMESPACE::Expectations::ExpectationTarget::InstanceMethods = RSpec::Expectations::ExpectationTarget::InstanceMethods
-
-class RSpec::Expectations::ExpectationTarget
-end
-
-RSPEC_NAMESPACE::Expectations::LegacyMacherAdapter = RSpec::Expectations::LegacyMatcherAdapter
-
-RSPEC_NAMESPACE::Expectations::LegacyMatcherAdapter = RSpec::Expectations::LegacyMatcherAdapter
-
-module RSpec::Expectations
-end
-
-module RSpec::Matchers
-end
-
-class RSpec::Matchers::AliasedNegatedMatcher
-end
-
-RSPEC_NAMESPACE::Matchers::AliasedNegatedMatcher::DefaultFailureMessages = RSpec::Matchers::BuiltIn::BaseMatcher::DefaultFailureMessages
-
-class RSpec::Matchers::AliasedNegatedMatcher
-end
-
-module RSpec::Matchers::BuiltIn
-end
-
-class RSpec::Matchers::BuiltIn::BaseMatcher
-end
-
-RSPEC_NAMESPACE::Matchers::BuiltIn::BaseMatcher::DefaultFailureMessages = RSpec::Matchers::BuiltIn::BaseMatcher::DefaultFailureMessages
-
-RSPEC_NAMESPACE::Matchers::BuiltIn::BaseMatcher::HashFormatting = RSpec::Matchers::BuiltIn::BaseMatcher::HashFormatting
-
-class RSpec::Matchers::BuiltIn::BaseMatcher
-end
-
-module RSpec::Matchers::BuiltIn
-end
-
-RSPEC_NAMESPACE::Matchers::Composable = RSpec::Matchers::Composable
-
-RSPEC_NAMESPACE::Matchers::MatcherDelegator = RSpec::Matchers::MatcherDelegator
-
-module RSpec::Matchers
-end
-
-module RSpec::Mocks
-end
-
-RSPEC_NAMESPACE::Mocks::ArgumentMatchers = RSpec::Mocks::ArgumentMatchers
-
-RSPEC_NAMESPACE::Mocks::ExampleMethods = RSpec::Mocks::ExampleMethods
-
-module RSpec::Mocks
-end
-
-RSPEC_NAMESPACE::SharedContext = RSpec::Core::SharedContext
-
-module RSpec::Support
-end
-
-RSPEC_NAMESPACE::Support::AllExceptionsExceptOnesWeMustNotRescue = RSpec::Support::AllExceptionsExceptOnesWeMustNotRescue
-
-RSPEC_NAMESPACE::Support::MethodSignatureVerifier = RSpec::Support::MethodSignatureVerifier
-
-RSPEC_NAMESPACE::Support::RecursiveConstMethods = RSpec::Support::RecursiveConstMethods
-
-RSPEC_NAMESPACE::Support::StrictSignatureVerifier = RSpec::Support::MethodSignatureVerifier
-
-module RSpec::Support
-end
-
-module RSpec
-end
+RSPEC_NAMESPACE = RSpec
 
 module RSpec
   MODULES_TO_AUTOLOAD = ::T.let(nil, ::T.untyped)
@@ -12644,6 +12604,8 @@ end
 class RSpec::Core::DidYouMean
 end
 
+RSpec::Core::Example::AllExceptionsExcludingDangerousOnesOnRubiesThatAllowIt = RSpec::Support::AllExceptionsExceptOnesWeMustNotRescue
+
 class RSpec::Core::ExampleGroup
   include ::RSpec::Core::MockingAdapters::RSpec
   include ::RSpec::Mocks::ExampleMethods
@@ -12652,6 +12614,8 @@ class RSpec::Core::ExampleGroup
   include ::RSpec::Matchers
   INSTANCE_VARIABLE_TO_IGNORE = ::T.let(nil, ::T.untyped)
 end
+
+RSpec::Core::ExclusionRules = RSpec::Core::FilterRules
 
 class RSpec::Core::FilterRules
   PROC_HEX_NUMBER = ::T.let(nil, ::T.untyped)
@@ -12841,6 +12805,8 @@ end
 module RSpec::Core::Formatters::SyntaxHighlighter::CodeRayImplementation
   RESET_CODE = ::T.let(nil, ::T.untyped)
 end
+
+RSpec::Core::Formatters::SyntaxHighlighter::WindowsImplementation = RSpec::Core::Formatters::SyntaxHighlighter::NoSyntaxHighlightingImplementation
 
 class RSpec::Core::Hooks::HookCollections
   EMPTY_HOOK_ARRAY = ::T.let(nil, ::T.untyped)
@@ -13049,6 +13015,8 @@ end
 class RSpec::Expectations::FailureAggregator
 end
 
+RSpec::Expectations::LegacyMacherAdapter = RSpec::Expectations::LegacyMatcherAdapter
+
 class RSpec::Expectations::MultipleExpectationsNotMetError
   include ::RSpec::Core::MultipleExceptionError::InterfaceTag
   def aggregation_block_label(); end
@@ -13077,6 +13045,8 @@ module RSpec::Matchers
   DYNAMIC_MATCHER_REGEX = ::T.let(nil, ::T.untyped)
   HAS_REGEX = ::T.let(nil, ::T.untyped)
 end
+
+RSpec::Matchers::AliasedNegatedMatcher::DefaultFailureMessages = RSpec::Matchers::BuiltIn::BaseMatcher::DefaultFailureMessages
 
 class RSpec::Matchers::BuiltIn::All
   def does_not_match?(_actual); end
@@ -14106,6 +14076,8 @@ module RSpec::Mocks::Version
   STRING = ::T.let(nil, ::T.untyped)
 end
 
+RSpec::SharedContext = RSpec::Core::SharedContext
+
 module RSpec::Support
   DEFAULT_FAILURE_NOTIFIER = ::T.let(nil, ::T.untyped)
   DEFAULT_WARNING_NOTIFIER = ::T.let(nil, ::T.untyped)
@@ -14143,6 +14115,8 @@ class RSpec::Support::MethodSignature
   INFINITY = ::T.let(nil, ::T.untyped)
 end
 
+RSpec::Support::Mutex = Thread::Mutex
+
 class RSpec::Support::ObjectFormatter
   ELLIPSIS = ::T.let(nil, ::T.untyped)
   INSPECTOR_CLASSES = ::T.let(nil, ::T.untyped)
@@ -14159,6 +14133,8 @@ end
 class RSpec::Support::ObjectFormatter::UninspectableObjectInspector
   OBJECT_ID_FORMAT = ::T.let(nil, ::T.untyped)
 end
+
+RSpec::Support::StrictSignatureVerifier = RSpec::Support::MethodSignatureVerifier
 
 module RSpec::Support::Version
   STRING = ::T.let(nil, ::T.untyped)
@@ -14294,7 +14270,6 @@ module Random::Formatter
 end
 
 class Random
-  extend ::Random::Formatter
   def self.bytes(_); end
 
   def self.urandom(_); end
@@ -14403,10 +14378,6 @@ end
 
 class Regexp
   def match?(*_); end
-end
-
-class Regexp
-  def self.union(*_); end
 end
 
 module Reline
@@ -18988,10 +18959,6 @@ end
 ScanError = StringScanner::Error
 
 module SecureRandom
-end
-
-module SecureRandom
-  extend ::Random::Formatter
   def self.bytes(n); end
 end
 
@@ -19007,8 +18974,6 @@ class Set
   def divide(&func); end
 
   def eql?(o); end
-
-  def filter!(&block); end
 
   def flatten_merge(set, seen=T.unsafe(nil)); end
 
@@ -19549,6 +19514,8 @@ module Sorbet::Private::RealStdlib
 
   def self.real_is_a?(o, klass); end
 
+  def self.real_method(obj, sym); end
+
   def self.real_name(o); end
 
   def self.real_object_id(o); end
@@ -19916,12 +19883,6 @@ Struct::Passwd = Etc::Passwd
 
 Struct::Tms = Process::Tms
 
-class Symbol
-  def end_with?(*_); end
-
-  def start_with?(*_); end
-end
-
 class SystemCallError
   def errno(); end
 end
@@ -19946,12 +19907,6 @@ class Tempfile::Remover
 end
 
 class Tempfile::Remover
-end
-
-class Time
-  def ceil(*_); end
-
-  def floor(*_); end
 end
 
 class TracePoint
@@ -20025,10 +19980,6 @@ class URI::File
 end
 
 class URI::File
-end
-
-class URI::HTTP
-  def request_uri(); end
 end
 
 class URI::LDAP
@@ -20128,12 +20079,6 @@ end
 
 module URI
   extend ::URI::Escape
-  def self.decode_www_form(str, enc=T.unsafe(nil), separator: T.unsafe(nil), use__charset_: T.unsafe(nil), isindex: T.unsafe(nil)); end
-
-  def self.encode_www_form(enum, enc=T.unsafe(nil)); end
-
-  def self.encode_www_form_component(str, enc=T.unsafe(nil)); end
-
   def self.get_encoding(label); end
 
 end

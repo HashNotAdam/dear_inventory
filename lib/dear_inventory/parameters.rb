@@ -8,7 +8,7 @@ module DearInventory
 
     sig { params(params: T::Hash[Symbol, T.untyped]).void }
     def initialize(params)
-      @values = {}
+      @values = T.let({}, T::Hash[Symbol, T.untyped])
       assign_params(params)
     end
 
@@ -26,19 +26,7 @@ module DearInventory
         const_set(:FIELDS, fields.freeze)
 
         fields.each do |name, specifications|
-          validator = Object.const_get(
-            "DearInventory::Validators::#{specifications[:type]}"
-          )
-
-          define_method("#{name}=") do |value|
-            validator.(
-              name,
-              value,
-              limit: specifications[:limit],
-              values: specifications[:values]
-            )
-            @values[name] = value
-          end
+          define_method_for_validator(name, specifications)
         end
       end
 
@@ -46,7 +34,7 @@ module DearInventory
         params(
           resource_class: T.untyped,
           endpoint: T.nilable(String),
-          params: T.nilable(T::Hash[Symbol, T.untyped])
+          params: T::Hash[Symbol, T.untyped]
         ).returns(T.untyped)
       end
       def convert(resource_class, endpoint, params)
@@ -56,7 +44,10 @@ module DearInventory
           resource_class: resource_class,
           endpoint: endpoint
         )
-        params_class
+        params_class = T.cast(
+          params_class,
+          T.class_of(DearInventory::Parameters)
+        )
 
         convert_with_params_class(
           endpoint: endpoint, params_class: params_class,
@@ -68,10 +59,102 @@ module DearInventory
 
       sig do
         params(
-          params_class: T.nilable(DearInventory::Parameters),
+          name: Symbol,
+          specifications: T::Hash[
+            Symbol, T.any(Symbol, T::Array[String], T::Boolean)
+          ]
+        ).void
+      end
+      def define_method_for_validator(name, specifications)
+        case specifications[:type]
+        when :Enum
+          define_enum_method(name, specifications)
+        when :String
+          define_string_method(
+            name,
+            T.cast(specifications, T::Hash[Symbol, T.any(Symbol, T::Boolean)])
+          )
+        else
+          define_method_without_options(
+            name,
+            T.cast(specifications, T::Hash[Symbol, T.any(Symbol, T::Boolean)])
+          )
+        end
+      end
+
+      sig do
+        params(
+          name: Symbol,
+          specifications: T::Hash[
+            Symbol, T.any(Symbol, T::Array[String], T::Boolean)
+          ]
+        ).void
+      end
+      def define_enum_method(name, specifications)
+        validator = DearInventory::Validators::Enum
+        options = {
+          values: specifications[:values]
+        }
+        define_method_with_options(name, validator, options)
+      end
+
+      sig do
+        params(
+          name: Symbol,
+          specifications: T::Hash[Symbol, T.any(Symbol, T::Boolean)]
+        ).void
+      end
+      def define_string_method(name, specifications)
+        validator = DearInventory::Validators::String
+        options = {
+          max_length: specifications[:max_length]
+        }
+        define_method_with_options(name, validator, options)
+      end
+
+      sig do
+        params(
+          name: Symbol,
+          validator: T.class_of(DearInventory::Validator),
+          options: T::Hash[
+            Symbol, T.nilable(T.any(Symbol, T::Array[String], T::Boolean))
+          ],
+        ).void
+      end
+      def define_method_with_options(name, validator, options)
+        define_method("#{name}=") do |value|
+          validator.(
+            name,
+            value,
+            options: options
+          )
+
+          T.unsafe(self).instance_variable_get(:@values)[name] = value
+        end
+      end
+
+      sig do
+        params(
+          name: Symbol,
+          specifications: T::Hash[Symbol, T.any(Symbol, T::Boolean)]
+        ).void
+      end
+      def define_method_without_options(name, specifications)
+        validator = Object.const_get(
+          "DearInventory::Validators::#{specifications[:type]}"
+        )
+        define_method("#{name}=") do |value|
+          validator.(name, value)
+          T.unsafe(self).instance_variable_get(:@values)[name] = value
+        end
+      end
+
+      sig do
+        params(
+          params_class: T.nilable(T.class_of(DearInventory::Parameters)),
           resource_class: DearInventory::Resource,
           endpoint: T.nilable(String),
-          params: T.nilable(T::Hash[Symbol, T.untyped])
+          params: T::Hash[Symbol, T.untyped]
         ).returns(T.nilable(DearInventory::Parameters))
       end
       def convert_with_params_class(
@@ -90,20 +173,31 @@ module DearInventory
       self.class.
         const_get(:FIELDS).
         each_with_object({}) do |(field_name, specifications), hash|
-          value = @values[field_name]
-
-          if specifications[:required]
-            Validators::Required.(field_name, value)
-          end
-
+          value = parameter_value(field_name, specifications)
           next if value.nil?
 
-          value = value.strftime("%FT%T.%3N") if value.respond_to?(:strftime)
           hash[specifications[:property]] = value
         end
     end
 
     private
+
+    sig do
+      params(
+        field_name: Symbol,
+        specifications: T::Hash[Symbol, T.untyped]
+      ).returns(T.nilable(T.any(String, Numeric, T::Boolean)))
+    end
+    def parameter_value(field_name, specifications)
+      value = @values[field_name]
+      Validators::Required.(field_name, value) if specifications[:required]
+
+      if value.respond_to?(:strftime)
+        ::DearInventory::DateTime.new(value).to_s
+      else
+        value
+      end
+    end
 
     sig { params(params: T::Hash[Symbol, T.untyped]).void }
     def assign_params(params)

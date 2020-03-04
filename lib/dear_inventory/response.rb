@@ -6,30 +6,42 @@ module DearInventory
     extend T::Sig
     extend DearInventory::IsASubclass
 
-    sig do
-      params(
-        fields: T::Hash[
-          Symbol,
-          T::Hash[Symbol, T.any(Symbol, DearInventory::Model)]
-        ]
-      ).void
-    end
-    def self.fields(fields)
-      const_set(:FIELDS, fields.freeze)
+    class << self
+      extend T::Sig
 
-      fields.each do |response_name, specifications|
-        define_method(specifications[:name]) do
+      sig do
+        params(
+          fields: T::Hash[
+            Symbol,
+            T::Hash[Symbol, T.any(Symbol, DearInventory::Model)]
+          ]
+        ).void
+      end
+      def fields(fields)
+        const_set(:FIELDS, fields.freeze)
+
+        fields.each do |response_name, specifications|
+          name = T.cast(specifications[:name], Symbol)
+          define_field_method(name, response_name, specifications)
+        end
+      end
+
+      private
+
+      sig do
+        params(
+          name: Symbol,
+          response_name: Symbol,
+          specifications: T::Hash[Symbol, T.any(Symbol, DearInventory::Model)]
+        ).void
+      end
+      def define_field_method(name, response_name, specifications)
+        define_method(name) do
           variable_name = "@#{specifications[:name]}"
           stored_value = instance_variable_get(variable_name)
           return stored_value unless stored_value.nil?
 
-          value = T.unsafe(self).body[response_name.to_s]
-          if specifications[:type] == :Array
-            value = initialize_array_values_in_models(
-              value, specifications[:model]
-            )
-          end
-
+          value = T.unsafe(self).parameter_value(response_name, specifications)
           instance_variable_set(variable_name, value)
         end
       end
@@ -77,12 +89,40 @@ module DearInventory
 
     protected
 
-    def initialize_array_values_in_models(array, model)
-      array.each_with_index do |value, index|
-        array[index] = model.new(value)
+    sig do
+      params(
+        response_name: Symbol,
+        specifications: T::Hash[Symbol, T.any(Symbol, DearInventory::Model)]
+      ).returns(
+        T.nilable(
+          T.any(
+            String, Numeric,
+            DearInventory::Model, T::Array[DearInventory::Model],
+          )
+        )
+      )
+    end
+    def parameter_value(response_name, specifications)
+      value = T.unsafe(self).body[response_name.to_s]
+
+      if specifications[:type] == :Array
+        model = specifications[:model]
+        value = T.unsafe(self).initialize_array_values_in_models(value, model)
       end
 
-      array
+      value
+    end
+
+    sig do
+      params(
+        array: T::Array[T::Hash[String, T.nilable(T.any(String, Numeric))]],
+        model: T.class_of(DearInventory::Model)
+      ).returns(T::Array[DearInventory::Model])
+    end
+    def initialize_array_values_in_models(array, model)
+      array.each_with_object([]) do |values, records|
+        records << model.new(values)
+      end
     end
 
     private

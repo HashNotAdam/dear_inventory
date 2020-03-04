@@ -8,6 +8,7 @@
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/ffi/all/ffi.rbi
 #
 # ffi-1.12.2
+
 class FFI::Type
   def alignment; end
   def initialize(arg0); end

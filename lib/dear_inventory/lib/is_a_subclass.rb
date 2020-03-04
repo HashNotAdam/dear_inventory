@@ -8,7 +8,10 @@ module DearInventory
     sig { params(comparison_class: T.untyped).returns(T::Boolean) }
     def is_a?(comparison_class)
       return true if super
-      return ancestors.include?(comparison_class) if self.class == Class
+
+      if T.unsafe(self).class == Class
+        return T.unsafe(self).ancestors.include?(comparison_class)
+      end
 
       false
     end

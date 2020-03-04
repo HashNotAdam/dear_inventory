@@ -1,4 +1,4 @@
-# typed: strong
+# typed: strict
 # frozen_string_literal: true
 
 module DearInventory
@@ -8,31 +8,42 @@ module DearInventory
     extend T::Helpers
     abstract!
 
+    DEFAULT_OPTIONS = T.let(
+      {
+        limit: nil,
+        max_length: nil,
+        values: nil,
+      }.freeze,
+      T::Hash[Symbol, T.nilable(T.any(Integer, T::Array[String]))]
+    )
+    private_constant :DEFAULT_OPTIONS
+
     sig do
       params(
         field_name: Symbol,
-        value: T.nilable(T.any(Date, String, T::Boolean, Time)),
-        limit: T.nilable(Integer),
-        values: T.nilable(T::Array[String])
+        value: T.nilable(T.any(Date, Numeric, String, T::Boolean, Time)),
+        options: T::Hash[Symbol, T.untyped]
       ).void
     end
-    def self.call(field_name, value, limit: nil, values: nil)
-      new(field_name, value, limit: limit, values: values).call
+    def self.call(field_name, value, options: DEFAULT_OPTIONS)
+      new(field_name, value, options: options).call
     end
 
     sig do
       params(
         field_name: Symbol,
-        value: T.nilable(T.any(Date, String, T::Boolean, Time)),
-        limit: T.nilable(Integer),
-        values: T.nilable(T::Array[String])
+        value: T.nilable(T.any(Date, Numeric, String, T::Boolean, Time)),
+        options: T::Hash[Symbol, T.untyped]
       ).void
     end
-    def initialize(field_name, value, limit: nil, values: nil)
+    def initialize(field_name, value, options: DEFAULT_OPTIONS)
       @field_name = T.let(field_name, Symbol)
-      @limit = T.let(limit, T.nilable(Integer))
-      @value = T.let(value, T.nilable(T.any(Date, String, T::Boolean, Time)))
-      @values = T.let(values, T.nilable(T::Array[String]))
+      @value =
+        T.let(value, T.nilable(T.any(Date, Numeric, String, T::Boolean, Time)))
+
+      @limit = T.let(options[:limit], T.nilable(Integer))
+      @max_length = T.let(options[:limit], T.nilable(Integer))
+      @values = T.let(options[:values], T.nilable(T::Array[String]))
     end
 
     private

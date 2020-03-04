@@ -8,6 +8,7 @@
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/crack/all/crack.rbi
 #
 # crack-0.4.3
+
 class REXMLUtiliyNodeString < String
   def attributes; end
   def attributes=(arg0); end

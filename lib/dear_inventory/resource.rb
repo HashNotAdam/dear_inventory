@@ -22,7 +22,7 @@ module DearInventory
       response_class = DearInventory::EndpointClass.(
         class_type: "Responses", resource_class: self.class, endpoint: endpoint
       )
-      response_class.new(response)
+      T.cast(response_class, T.class_of(DearInventory::Response)).new(response)
     end
 
     private
@@ -31,8 +31,8 @@ module DearInventory
 
     sig { params(endpoint: T.nilable(String)).returns(String) }
     def resource_url(endpoint)
-      resource = self.class.name.split("::").last
-      url = "#{URL_BASE}/#{resource.downcase}"
+      resource = T.must(self.class.name).split("::").last
+      url = "#{URL_BASE}/#{T.must(resource).downcase}"
       url += "/#{endpoint}" unless endpoint.nil?
       url
     end

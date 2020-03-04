@@ -8,6 +8,7 @@
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/unf/all/unf.rbi
 #
 # unf-0.1.4
+
 module UNF
 end
 class String

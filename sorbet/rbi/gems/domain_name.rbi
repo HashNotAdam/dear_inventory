@@ -8,6 +8,7 @@
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/domain_name/all/domain_name.rbi
 #
 # domain_name-0.5.20190701
+
 class DomainName
   def <(other); end
   def <=(other); end

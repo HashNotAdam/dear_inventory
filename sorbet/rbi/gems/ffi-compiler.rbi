@@ -8,6 +8,7 @@
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/ffi-compiler/all/ffi-compiler.rbi
 #
 # ffi-compiler-1.0.1
+
 module FFI::Compiler
 end
 class FFI::Compiler::Platform

@@ -8,6 +8,7 @@
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/vcr/all/vcr.rbi
 #
 # vcr-5.0.0
+
 module VCR
   def cassette_persisters; end
   def cassette_serializers; end

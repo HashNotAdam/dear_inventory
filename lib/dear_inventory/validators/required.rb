@@ -4,6 +4,8 @@
 module DearInventory
   module Validators
     class Required < DearInventory::Validator
+      extend T::Sig
+
       sig { override.void }
       def call
         return if instance_variable_get(:@value).present?

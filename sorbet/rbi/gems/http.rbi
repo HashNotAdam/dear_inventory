@@ -8,6 +8,7 @@
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/http/all/http.rbi
 #
 # http-4.3.0
+
 module HTTP
   def self.[](headers); end
   extend HTTP::Chainable

@@ -8,6 +8,7 @@
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/http-form_data/all/http-form_data.rbi
 #
 # http-form_data-2.2.0
+
 module HTTP
 end
 module HTTP::FormData

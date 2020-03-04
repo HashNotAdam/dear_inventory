@@ -8,9 +8,16 @@ module DearInventory
     sig do
       params(
         class_type: String,
-        resource_class: DearInventory::Resource,
+        resource_class: T.class_of(DearInventory::Resource),
         endpoint: T.nilable(String)
-      ).returns(T.any(DearInventory::Parameters, DearInventory::Response))
+      ).returns(
+        T.nilable(
+          T.any(
+            T.class_of(DearInventory::Parameters),
+            T.class_of(DearInventory::Response)
+          )
+        )
+      )
     end
     def self.call(class_type:, resource_class:, endpoint:)
       new(
@@ -23,7 +30,7 @@ module DearInventory
     sig do
       params(
         class_type: String,
-        resource_class: DearInventory::Resource,
+        resource_class: T.class_of(DearInventory::Resource),
         endpoint: T.nilable(String)
       ).void
     end
@@ -34,7 +41,16 @@ module DearInventory
       @class_name = T.let(nil, T.nilable(String))
     end
 
-    sig { returns(T.untyped) }
+    sig do
+      returns(
+        T.nilable(
+          T.any(
+            T.class_of(DearInventory::Parameters),
+            T.class_of(DearInventory::Response)
+          )
+        )
+      )
+    end
     def call
       Object.const_get(class_name) if Object.const_defined?(class_name)
     end

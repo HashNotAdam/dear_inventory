@@ -10,10 +10,11 @@ module DearInventory
       def call
         value = instance_variable_get(:@value)
         return if value.nil?
-        return if @values.include?(value)
+        return if T.must(@values).include?(value)
 
         raise_error(
-          "expected one of #{@values.map { |val| val.inspect }.join(", ")} " \
+          "expected one of " \
+          "#{T.must(@values).map { |val| val.inspect }.join(", ")} " \
           "but received #{value.inspect}"
         )
       end
