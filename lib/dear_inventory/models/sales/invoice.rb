@@ -7,7 +7,7 @@ module DearInventory
       class Invoice < DearInventory::Model
         extend T::Sig
 
-        fields({
+        fields(
           TaskID: {
             name: :task_id,
             type: :Guid,
@@ -78,8 +78,8 @@ module DearInventory
           Paid: {
             name: :paid,
             type: :Numeric,
-          },
-        })
+          }
+        )
       end
     end
   end

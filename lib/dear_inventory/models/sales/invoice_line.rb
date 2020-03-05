@@ -7,12 +7,12 @@ module DearInventory
       class InvoiceLine < Line
         extend T::Sig
 
-        fields({
+        fields(
           Account: {
             name: :account,
             type: :String,
-          },
-        })
+          }
+        )
       end
     end
   end

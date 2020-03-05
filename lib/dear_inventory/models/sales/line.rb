@@ -7,7 +7,7 @@ module DearInventory
       class Line < DearInventory::Model
         extend T::Sig
 
-        fields({
+        fields(
           ProductID: {
             name: :product_id,
             type: :Guid,
@@ -51,8 +51,8 @@ module DearInventory
           Total: {
             name: :total,
             type: :Numeric,
-          },
-        })
+          }
+        )
       end
     end
   end

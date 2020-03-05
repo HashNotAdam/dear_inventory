@@ -7,7 +7,7 @@ module DearInventory
       class Quote < DearInventory::Model
         extend T::Sig
 
-        fields({
+        fields(
           Memo: {
             name: :memo,
             type: :String,
@@ -42,8 +42,8 @@ module DearInventory
           Total: {
             name: :total,
             type: :Numeric,
-          },
-        })
+          }
+        )
       end
     end
   end

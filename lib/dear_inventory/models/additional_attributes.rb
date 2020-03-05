@@ -6,7 +6,7 @@ module DearInventory
     class AdditionalAttributes < DearInventory::Model
       extend T::Sig
 
-      fields({
+      fields(
         AdditionalAttribute1: {
           name: :additional_attribute_1,
           type: :String,
@@ -46,8 +46,8 @@ module DearInventory
         AdditionalAttribute10: {
           name: :additional_attribute_10,
           type: :String,
-        },
-      })
+        }
+      )
     end
   end
 end

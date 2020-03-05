@@ -6,7 +6,7 @@ module DearInventory
     class Address < DearInventory::Model
       extend T::Sig
 
-      fields({
+      fields(
         DisplayAddressLine1: {
           name: :display_address_line_1,
           type: :String,
@@ -38,8 +38,8 @@ module DearInventory
         Country: {
           name: :country,
           type: :String,
-        },
-      })
+        }
+      )
     end
   end
 end

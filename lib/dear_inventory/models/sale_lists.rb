@@ -6,7 +6,7 @@ module DearInventory
     class SaleLists < DearInventory::Model
       extend T::Sig
 
-      fields({
+      fields(
         Total: {
           name: :total,
           type: :Integer,
@@ -19,8 +19,8 @@ module DearInventory
           name: :sale_list,
           type: :Array,
           model: DearInventory::Models::SaleList,
-        },
-      })
+        }
+      )
     end
   end
 end

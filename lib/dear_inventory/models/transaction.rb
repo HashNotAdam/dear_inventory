@@ -6,7 +6,7 @@ module DearInventory
     class Transaction < DearInventory::Model
       extend T::Sig
 
-      fields({
+      fields(
         TaskID: {
           name: :task_id,
           type: :Guid,
@@ -34,8 +34,8 @@ module DearInventory
         EffectiveDate: {
           name: :description,
           type: :DateTime,
-        },
-      })
+        }
+      )
     end
   end
 end

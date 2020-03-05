@@ -9,7 +9,7 @@ module DearInventory
       REGEX = T.let(
         [
           /\A[\da-f]{32}\z/i,
-          /\A(urn:uuid:)?[\da-f]{8}-([\da-f]{4}-){3}[\da-f]{12}\z/i
+          /\A(urn:uuid:)?[\da-f]{8}-([\da-f]{4}-){3}[\da-f]{12}\z/i,
         ].freeze,
         T::Array[Regexp]
       )

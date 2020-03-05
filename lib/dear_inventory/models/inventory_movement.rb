@@ -6,7 +6,7 @@ module DearInventory
     class InventoryMovement < DearInventory::Model
       extend T::Sig
 
-      fields({
+      fields(
         TaskID: {
           name: :task_id,
           type: :Guid,
@@ -22,8 +22,8 @@ module DearInventory
         COGS: {
           name: :cogs,
           type: :Numeric,
-        },
-      })
+        }
+      )
     end
   end
 end

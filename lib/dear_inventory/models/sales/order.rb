@@ -7,7 +7,7 @@ module DearInventory
       class Order < DearInventory::Model
         extend T::Sig
 
-        fields({
+        fields(
           SaleOrderNumber: {
             name: :sale_order_number,
             type: :String,
@@ -41,8 +41,8 @@ module DearInventory
           Total: {
             name: :total,
             type: :Numeric,
-          },
-        })
+          }
+        )
       end
     end
   end

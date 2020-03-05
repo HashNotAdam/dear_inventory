@@ -6,7 +6,9 @@ module DearInventory
     extend T::Sig
     extend DearInventory::IsASubclass
 
+    sig { returns(DearInventory::Models::Request) }
     attr_reader :request
+    sig { returns(HTTP::Response) }
     attr_reader :response
 
     sig do
@@ -51,11 +53,11 @@ module DearInventory
     sig { returns(DearInventory::Response) }
     def next_page
       unless T.must(@model).respond_to?(:page)
-        raise(DearInventory::NotPaginated, uri: uri)
+        raise DearInventory::NotPaginatedError.new(uri: uri)
       end
 
       request = @request.dup
-      request.params.page = T.must(@model).page + 1
+      T.unsafe(request.params).page = T.unsafe(@model).page + 1
       DearInventory::Request.(request)
     end
 
@@ -74,7 +76,7 @@ module DearInventory
     sig { void }
     def assign_values
       @model = @request.model.new(body)
-      @request.model.const_get(:FIELDS).each do |response_name, specifications|
+      @request.model.const_get(:FIELDS).each do |_, specifications|
         define_singleton_method(specifications[:name]) do
           @model.public_send(specifications[:name])
         end

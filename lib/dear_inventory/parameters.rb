@@ -32,22 +32,13 @@ module DearInventory
 
       sig do
         params(
-          resource_class: T.untyped,
+          resource_class: T.class_of(DearInventory::Resource),
           endpoint: T.nilable(String),
           params: T::Hash[Symbol, T.untyped]
         ).returns(T.untyped)
       end
       def convert(resource_class, endpoint, params)
-        resource = resource_class.name.split("::").last
-        params_class = DearInventory::EndpointClass.(
-          class_type: "Parameters",
-          resource_class: resource_class,
-          endpoint: endpoint
-        )
-        params_class = T.cast(
-          params_class,
-          T.class_of(DearInventory::Parameters)
-        )
+        params_class = endpoint_class(resource_class, endpoint)
 
         convert_with_params_class(
           endpoint: endpoint, params_class: params_class,
@@ -57,6 +48,22 @@ module DearInventory
 
       private
 
+      sig do
+        params(
+          resource_class: T.class_of(DearInventory::Resource),
+          endpoint: T.nilable(String)
+        ).returns(T.class_of(DearInventory::Parameters))
+      end
+      def endpoint_class(resource_class, endpoint)
+        params_class = DearInventory::EndpointClass.(
+          class_type: "Parameters",
+          resource_class: resource_class,
+          endpoint: endpoint
+        )
+        T.cast(params_class, T.class_of(DearInventory::Parameters))
+      end
+
+      # rubocop:disable Metrics/MethodLength
       sig do
         params(
           name: Symbol,
@@ -81,6 +88,7 @@ module DearInventory
           )
         end
       end
+      # rubocop:enable Metrics/MethodLength
 
       sig do
         params(
@@ -93,7 +101,7 @@ module DearInventory
       def define_enum_method(name, specifications)
         validator = DearInventory::Validators::Enum
         options = {
-          values: specifications[:values]
+          values: specifications[:values],
         }
         define_method_with_options(name, validator, options)
       end
@@ -107,7 +115,7 @@ module DearInventory
       def define_string_method(name, specifications)
         validator = DearInventory::Validators::String
         options = {
-          max_length: specifications[:max_length]
+          max_length: specifications[:max_length],
         }
         define_method_with_options(name, validator, options)
       end
@@ -118,7 +126,7 @@ module DearInventory
           validator: T.class_of(DearInventory::Validator),
           options: T::Hash[
             Symbol, T.nilable(T.any(Symbol, T::Array[String], T::Boolean))
-          ],
+          ]
         ).void
       end
       def define_method_with_options(name, validator, options)
@@ -152,7 +160,7 @@ module DearInventory
       sig do
         params(
           params_class: T.nilable(T.class_of(DearInventory::Parameters)),
-          resource_class: DearInventory::Resource,
+          resource_class: T.class_of(DearInventory::Resource),
           endpoint: T.nilable(String),
           params: T::Hash[Symbol, T.untyped]
         ).returns(T.nilable(DearInventory::Parameters))

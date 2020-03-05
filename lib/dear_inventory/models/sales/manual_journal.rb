@@ -7,7 +7,7 @@ module DearInventory
       class ManualJournal < DearInventory::Model
         extend T::Sig
 
-        fields({
+        fields(
           Status: {
             name: :status,
             type: :String,
@@ -16,8 +16,8 @@ module DearInventory
             name: :lines,
             type: :Array,
             model: DearInventory::Models::Sales::ManualJournalLine,
-          },
-        })
+          }
+        )
       end
     end
   end

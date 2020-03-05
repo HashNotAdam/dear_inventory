@@ -6,7 +6,7 @@ module DearInventory
     class AdditionalCharge < DearInventory::Model
       extend T::Sig
 
-      fields({
+      fields(
         Description: {
           name: :description,
           type: :String,
@@ -38,8 +38,8 @@ module DearInventory
         Comment: {
           name: :comment,
           type: :String,
-        },
-      })
+        }
+      )
     end
   end
 end

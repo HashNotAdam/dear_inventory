@@ -6,7 +6,7 @@ module DearInventory
     class SaleList < DearInventory::Model
       extend T::Sig
 
-      fields({
+      fields(
         SaleID: {
           name: :id,
           type: :Guid,
@@ -126,8 +126,8 @@ module DearInventory
         ExternalID: {
           name: :external_id,
           type: :String,
-        },
-      })
+        }
+      )
     end
   end
 end

@@ -14,7 +14,7 @@ module DearInventory
 
         raise_error(
           "expected one of " \
-          "#{T.must(@values).map { |val| val.inspect }.join(", ")} " \
+          "#{T.must(@values).map(&:inspect).join(", ")} " \
           "but received #{value.inspect}"
         )
       end

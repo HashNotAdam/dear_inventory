@@ -8,7 +8,7 @@ module DearInventory
         class ShipLine < DearInventory::Model
           extend T::Sig
 
-          fields({
+          fields(
             ID: {
               name: :id,
               type: :Guid,
@@ -36,8 +36,8 @@ module DearInventory
             IsShipped: {
               name: :is_shipped,
               type: :Boolean,
-            },
-          })
+            }
+          )
         end
       end
     end

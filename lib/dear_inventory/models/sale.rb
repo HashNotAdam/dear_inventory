@@ -6,7 +6,7 @@ module DearInventory
     class Sale < DearInventory::Model
       extend T::Sig
 
-      fields({
+      fields(
         ID: {
           name: :id,
           type: :Guid,
@@ -210,8 +210,8 @@ module DearInventory
           name: :transactions,
           type: :Array,
           model: DearInventory::Models::InventoryMovement,
-        },
-      })
+        }
+      )
     end
   end
 end

@@ -35,6 +35,10 @@ Metrics/BlockLength:
     - dear_inventory.gemspec
     - spec/**/*
 
+Metrics/ClassLength:
+  Exclude:
+    - lib/dear_inventory/models/**/*
+
 RSpec/BeforeAfterAll:
   Enabled: false
 

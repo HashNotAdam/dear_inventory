@@ -6,7 +6,7 @@ module DearInventory
     class Attachment < DearInventory::Model
       extend T::Sig
 
-      fields({
+      fields(
         ID: {
           name: :id,
           type: :Guid,
@@ -26,8 +26,8 @@ module DearInventory
         DownloadUrl: {
           name: :download_url,
           type: :String,
-        },
-      })
+        }
+      )
     end
   end
 end

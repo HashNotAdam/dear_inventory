@@ -7,7 +7,7 @@ module DearInventory
       class Fulfilment < DearInventory::Model
         extend T::Sig
 
-        fields({
+        fields(
           TaskID: {
             name: :task_id,
             type: :Guid,
@@ -38,8 +38,8 @@ module DearInventory
             name: :ship,
             type: :Hash,
             model: DearInventory::Models::Sales::Fulfilments::Ship,
-          },
-        })
+          }
+        )
       end
     end
   end

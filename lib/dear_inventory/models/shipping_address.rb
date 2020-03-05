@@ -6,7 +6,7 @@ module DearInventory
     class ShippingAddress < Address
       extend T::Sig
 
-      fields({
+      fields(
         Company: {
           name: :company,
           type: :String,
@@ -18,8 +18,8 @@ module DearInventory
         ShipToOther: {
           name: :ship_to_other,
           type: :Boolean,
-        },
-      })
+        }
+      )
     end
   end
 end

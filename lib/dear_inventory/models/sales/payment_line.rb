@@ -7,7 +7,7 @@ module DearInventory
       class PaymentLine < DearInventory::Model
         extend T::Sig
 
-        fields({
+        fields(
           ID: {
             name: :id,
             type: :Guid,
@@ -35,8 +35,8 @@ module DearInventory
           DateCreated: {
             name: :date_created,
             type: :DateTime,
-          },
-        })
+          }
+        )
       end
     end
   end

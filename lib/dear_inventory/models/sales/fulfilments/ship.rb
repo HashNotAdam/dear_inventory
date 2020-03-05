@@ -8,7 +8,7 @@ module DearInventory
         class Ship < DearInventory::Model
           extend T::Sig
 
-          fields({
+          fields(
             Status: {
               name: :status,
               type: :String,
@@ -20,14 +20,14 @@ module DearInventory
             ShippingAddress: {
               name: :status,
               type: :Hash,
-              model: DearInventory::Models::ShippingAddress
+              model: DearInventory::Models::ShippingAddress,
             },
             Lines: {
               name: :lines,
               type: :Array,
               model: DearInventory::Models::Sales::Fulfilments::ShipLine,
-            },
-          })
+            }
+          )
         end
       end
     end

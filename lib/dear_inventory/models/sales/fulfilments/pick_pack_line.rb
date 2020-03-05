@@ -8,7 +8,7 @@ module DearInventory
         class PickPackLine < DearInventory::Model
           extend T::Sig
 
-          fields({
+          fields(
             ProductID: {
               name: :product_id,
               type: :Guid,
@@ -48,8 +48,8 @@ module DearInventory
             WarrantyRegistrationNumber: {
               name: :warranty_registration_number,
               type: :String,
-            },
-          })
+            }
+          )
         end
       end
     end

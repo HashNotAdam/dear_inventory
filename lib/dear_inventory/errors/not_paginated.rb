@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 module DearInventory
-  class NotPaginated < Error
+  class NotPaginatedError < Error
     extend T::Sig
 
     sig do

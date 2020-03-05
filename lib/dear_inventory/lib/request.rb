@@ -20,6 +20,7 @@ module DearInventory
       @parameters = parameters
     end
 
+    sig { returns(DearInventory::Response) }
     def call
       options = request_params(@parameters.action, @parameters.params)
       response = HTTP.headers(headers).

@@ -1,6 +1,6 @@
 # typed: strict
 # frozen_string_literal: true
-require "pry"
+
 module DearInventory
   module Validators
     class DateTime < DearInventory::Validator

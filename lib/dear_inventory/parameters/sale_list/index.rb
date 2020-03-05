@@ -7,7 +7,7 @@ module DearInventory
       class Index < DearInventory::Parameters
         extend T::Sig
 
-        fields({
+        fields(
           page: {
             property: :Page,
             type: :Integer,
@@ -49,7 +49,7 @@ module DearInventory
             type: :Enum,
             values: [
               "NOT AVAILABLE", "DRAFT", "AUTHORISED", "VOIDED", "AUTH_NO_ALLOC",
-              "FULFILLED", "CLOSED"
+              "FULFILLED", "CLOSED",
             ],
             required: false,
           },
@@ -58,7 +58,7 @@ module DearInventory
             type: :Enum,
             values: [
               "VOIDED", "NOT AVAILABLE", "PICKED", "PICKING", "NOT PICKED",
-              "PARTIALLY PICKED"
+              "PARTIALLY PICKED",
             ],
             required: false,
           },
@@ -67,7 +67,7 @@ module DearInventory
             type: :Enum,
             values: [
               "VOIDED", "NOT AVAILABLE", "PACKED", "PACKING", "NOT PACKED",
-              "PARTIALLY PACKED"
+              "PARTIALLY PACKED",
             ],
             required: false,
           },
@@ -76,7 +76,7 @@ module DearInventory
             type: :Enum,
             values: [
               "VOIDED", "NOT AVAILABLE", "SHIPPED", "SHIPPING", "NOT SHIPPED",
-              "PARTIALLY SHIPPED"
+              "PARTIALLY SHIPPED",
             ],
             required: false,
           },
@@ -111,8 +111,8 @@ module DearInventory
             property: :ReadyForShipping,
             type: :Boolean,
             required: false,
-          },
-        })
+          }
+        )
       end
     end
   end

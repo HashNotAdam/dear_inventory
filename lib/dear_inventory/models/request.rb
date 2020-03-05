@@ -6,17 +6,21 @@ module DearInventory
     class Request < DearInventory::Model
       extend T::Sig
 
+      sig { returns(Symbol) }
       attr_reader :action
+      sig { returns(T.class_of(DearInventory::Model)) }
       attr_reader :model
+      sig { returns(DearInventory::Parameters) }
       attr_reader :params
-      attr_reader :uri 
+      sig { returns(String) }
+      attr_reader :uri
 
       sig { params(parameters: T::Hash[Symbol, T.untyped]).void }
       def initialize(parameters)
-        @action = parameters[:action]
-        @model = parameters[:model]
-        @params = parameters[:params]
-        @uri = parameters[:uri]
+        @action = T.let(parameters[:action], Symbol)
+        @model = T.let(parameters[:model], T.class_of(DearInventory::Model))
+        @params = T.let(parameters[:params], DearInventory::Parameters)
+        @uri = T.let(parameters[:uri], String)
       end
     end
   end

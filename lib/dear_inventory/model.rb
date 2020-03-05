@@ -51,6 +51,7 @@ module DearInventory
 
     private
 
+    # rubocop:disable Metrics/MethodLength
     sig do
       params(
         response_name: Symbol,
@@ -68,18 +69,22 @@ module DearInventory
       )
     end
     def field_value(response_name, values, specifications)
-      model = specifications[:model]
+      model = T.cast(
+        specifications[:model],
+        T.nilable(T.class_of(DearInventory::Model))
+      )
       value = values[response_name.to_s]
 
       case specifications[:type]
       when :Array
-        initialize_array_values_in_models(value, model)
+        initialize_array_values_in_models(value, T.must(model))
       when :Hash
-        model.new(value)
+        T.must(model).new(value)
       else
         value
       end
     end
+    # rubocop:enable Metrics/MethodLength
 
     sig do
       params(

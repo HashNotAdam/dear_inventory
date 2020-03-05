@@ -7,7 +7,7 @@ module DearInventory
       class ManualJournalLine < DearInventory::Model
         extend T::Sig
 
-        fields({
+        fields(
           Reference: {
             name: :reference,
             type: :String,
@@ -27,8 +27,8 @@ module DearInventory
           Credit: {
             name: :credit,
             type: :String,
-          },
-        })
+          }
+        )
       end
     end
   end

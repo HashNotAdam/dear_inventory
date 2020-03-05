@@ -7,7 +7,7 @@ module DearInventory
       class Index < DearInventory::Parameters
         extend T::Sig
 
-        fields({
+        fields(
           id: {
             property: :ID,
             type: :String,
@@ -27,8 +27,8 @@ module DearInventory
             property: :IncludeTransactions,
             type: :Boolean,
             required: false,
-          },
-        })
+          }
+        )
       end
     end
   end
