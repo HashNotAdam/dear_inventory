@@ -6,20 +6,24 @@ module DearInventory
     extend T::Sig
     extend DearInventory::IsASubclass
 
+    attr_reader :request
+    attr_reader :response
+
     sig do
       params(
-        model: T.class_of(DearInventory::Model),
+        request: DearInventory::Models::Request,
         response: HTTP::Response
       ).void
     end
-    def initialize(model:, response:)
-      @model = T.let(nil, T.nilable(DearInventory::Model))
+    def initialize(request:, response:)
+      @request = T.let(request, DearInventory::Models::Request)
       @response = T.let(response, HTTP::Response)
       @body = T.let(nil, T.nilable(String))
       @http_status = T.let(nil, T.nilable(Integer))
+      @model = T.let(nil, T.nilable(DearInventory::Model))
       @uri = T.let(nil, T.nilable(String))
 
-      assign_values(model)
+      assign_values
       raise_error unless success?
     end
 
@@ -44,6 +48,17 @@ module DearInventory
       @http_status ||= @response.status.code
     end
 
+    sig { returns(DearInventory::Response) }
+    def next_page
+      unless T.must(@model).respond_to?(:page)
+        raise(DearInventory::NotPaginated, uri: uri)
+      end
+
+      request = @request.dup
+      request.params.page = T.must(@model).page + 1
+      DearInventory::Request.(request)
+    end
+
     sig { returns(T::Boolean) }
     def success?
       http_status == 200
@@ -56,10 +71,10 @@ module DearInventory
 
     private
 
-    sig { params(model: T.class_of(DearInventory::Model)).void }
-    def assign_values(model)
-      @model = model.new(body)
-      model.const_get(:FIELDS).each do |response_name, specifications|
+    sig { void }
+    def assign_values
+      @model = @request.model.new(body)
+      @request.model.const_get(:FIELDS).each do |response_name, specifications|
         define_singleton_method(specifications[:name]) do
           @model.public_send(specifications[:name])
         end

@@ -33,8 +33,8 @@ module DearInventory
     end
 
     sig { returns(T.nilable(String)) }
-    def url
-      @response&.url&.to_s
+    def uri
+      @response&.uri&.to_s
     end
   end
 end

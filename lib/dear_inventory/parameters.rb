@@ -202,7 +202,7 @@ module DearInventory
     sig { params(params: T::Hash[Symbol, T.untyped]).void }
     def assign_params(params)
       params.each do |name, value|
-        __send__(:"#{name}=", value)
+        public_send(:"#{name}=", value)
       end
     end
   end

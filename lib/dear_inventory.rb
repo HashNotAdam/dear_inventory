@@ -8,11 +8,14 @@ require "dear_inventory/config"
 require "dear_inventory/environment"
 
 require "dear_inventory/error"
+require "dear_inventory/errors/not_paginated"
 require "dear_inventory/errors/request"
 require "dear_inventory/errors/validation"
 
 require "dear_inventory/lib/endpoint_class"
+require "dear_inventory/lib/date_time"
 require "dear_inventory/lib/is_a_subclass"
+require "dear_inventory/lib/request"
 
 require "dear_inventory/model"
 require "dear_inventory/models/additional_attributes"
@@ -39,6 +42,7 @@ require "dear_inventory/models/sale_lists"
 require "dear_inventory/models/sales/credit_note"
 require "dear_inventory/models/sales/invoice"
 require "dear_inventory/models/sale"
+require "dear_inventory/models/request"
 
 require "dear_inventory/validator"
 require "dear_inventory/validators/boolean"
