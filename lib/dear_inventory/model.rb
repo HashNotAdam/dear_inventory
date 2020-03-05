@@ -37,10 +37,14 @@ module DearInventory
       end
     end
 
+    alias initialize_abstract initialize
+
     sig do
-      params(values: T.nilable(T::Hash[String, T.untyped])).void
+      params(values: T.nilable(T::Hash[T.any(String, Symbol), T.untyped])).void
     end
-    def initialize(values)
+    def initialize(values = nil)
+      initialize_abstract
+
       return if values.nil?
 
       self.class.enumerate_fields do |response_name, specifications|
@@ -56,7 +60,7 @@ module DearInventory
       params(
         response_name: Symbol,
         values:
-          T::Hash[String, T.untyped],
+          T::Hash[T.any(String, Symbol), T.untyped],
         specifications:
           T::Hash[Symbol, T.any(Symbol, T.class_of(DearInventory::Model))]
       ).returns(
