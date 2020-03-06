@@ -92,7 +92,7 @@ module DearInventory
 
     sig do
       params(
-        array: T.nilable(T::Array[T::Hash[String, T.untyped]]),
+        array: T.nilable(T::Array[T::Hash[T.any(String, Symbol), T.untyped]]),
         model: T.class_of(DearInventory::Model)
       ).returns(T.nilable(T::Array[DearInventory::Model]))
     end
