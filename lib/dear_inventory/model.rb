@@ -63,14 +63,7 @@ module DearInventory
           T::Hash[T.any(String, Symbol), T.untyped],
         specifications:
           T::Hash[Symbol, T.any(Symbol, T.class_of(DearInventory::Model))]
-      ).returns(
-        T.nilable(
-          T.any(
-            Date, DateTime, String, Numeric, T::Boolean,
-            DearInventory::Model, T::Array[DearInventory::Model]
-          )
-        )
-      )
+      ).returns(T.untyped)
     end
     def field_value(response_name, values, specifications)
       model = T.cast(
@@ -80,6 +73,8 @@ module DearInventory
       value = values[response_name.to_s]
 
       case specifications[:type]
+      when :BigDecimal
+        value.to_d
       when :Date
         ::Date.parse(value) unless value.nil?
       when :DateTime
