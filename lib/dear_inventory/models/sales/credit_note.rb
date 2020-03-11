@@ -26,7 +26,7 @@ module DearInventory
           },
           CreditNoteDate: {
             name: :credit_note_date,
-            type: :DateTime,
+            type: :Date,
           },
           CreditNoteNumber: {
             name: :credit_note_number,
@@ -34,7 +34,7 @@ module DearInventory
           },
           CreditNoteConversionRate: {
             name: :credit_note_conversion_rate,
-            type: :Numeric,
+            type: :BigDecimal,
           },
           Lines: {
             name: :lines,
@@ -44,7 +44,7 @@ module DearInventory
           AdditionalCharges: {
             name: :additional_charges,
             type: :Array,
-            model: DearInventory::Models::AdditionalCharge,
+            model: DearInventory::Models::Sales::InvoiceAdditionalCharge,
           },
           Refunds: {
             name: :refunds,
@@ -58,15 +58,15 @@ module DearInventory
           },
           TotalBeforeTax: {
             name: :total_before_tax,
-            type: :Numeric,
+            type: :BigDecimal,
           },
           Tax: {
             name: :tax,
-            type: :Numeric,
+            type: :BigDecimal,
           },
           Total: {
             name: :total,
-            type: :Numeric,
+            type: :BigDecimal,
           }
         )
       end

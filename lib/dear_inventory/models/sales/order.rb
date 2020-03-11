@@ -28,19 +28,19 @@ module DearInventory
           AdditionalCharges: {
             name: :additional_charges,
             type: :Array,
-            model: DearInventory::Models::AdditionalCharge,
+            model: DearInventory::Models::Sales::AdditionalCharge,
           },
           TotalBeforeTax: {
             name: :total_before_tax,
-            type: :Numeric,
+            type: :BigDecimal,
           },
           Tax: {
             name: :tax,
-            type: :Numeric,
+            type: :BigDecimal,
           },
           Total: {
             name: :total,
-            type: :Numeric,
+            type: :BigDecimal,
           }
         )
       end

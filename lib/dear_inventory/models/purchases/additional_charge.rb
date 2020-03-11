@@ -3,29 +3,21 @@
 
 module DearInventory
   module Models
-    module Sales
-      class Line < DearInventory::Model
+    module Purchases
+      class AdditionalCharge < DearInventory::Model
         extend T::Sig
 
         fields(
-          ProductID: {
-            name: :product_id,
-            type: :Guid,
-          },
-          SKU: {
-            name: :sku,
+          Description: {
+            name: :description,
             type: :String,
-          },
-          Name: {
-            name: :name,
-            type: :String,
-          },
-          Quantity: {
-            name: :quantity,
-            type: :BigDecimal,
           },
           Price: {
             name: :price,
+            type: :BigDecimal,
+          },
+          Quantity: {
+            name: :quantity,
             type: :BigDecimal,
           },
           Discount: {
@@ -36,21 +28,13 @@ module DearInventory
             name: :tax,
             type: :BigDecimal,
           },
-          AverageCost: {
-            name: :average_cost,
+          Total: {
+            name: :total,
             type: :BigDecimal,
           },
           TaxRule: {
             name: :tax_rule,
             type: :String,
-          },
-          Comment: {
-            name: :comment,
-            type: :String,
-          },
-          Total: {
-            name: :total,
-            type: :BigDecimal,
           }
         )
       end

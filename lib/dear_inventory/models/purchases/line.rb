@@ -3,7 +3,7 @@
 
 module DearInventory
   module Models
-    module Sales
+    module Purchases
       class Line < DearInventory::Model
         extend T::Sig
 
@@ -36,12 +36,12 @@ module DearInventory
             name: :tax,
             type: :BigDecimal,
           },
-          AverageCost: {
-            name: :average_cost,
-            type: :BigDecimal,
-          },
           TaxRule: {
             name: :tax_rule,
+            type: :String,
+          },
+          SupplierSKU: {
+            name: :supplier_sku,
             type: :String,
           },
           Comment: {

@@ -29,7 +29,7 @@ module DearInventory
         },
         Amount: {
           name: :credit,
-          type: :Numeric,
+          type: :BigDecimal,
         },
         EffectiveDate: {
           name: :description,

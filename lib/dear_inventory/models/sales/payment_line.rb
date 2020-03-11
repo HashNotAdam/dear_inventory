@@ -18,7 +18,7 @@ module DearInventory
           },
           Amount: {
             name: :amount,
-            type: :Numeric,
+            type: :BigDecimal,
           },
           DatePaid: {
             name: :date_paid,
@@ -30,7 +30,7 @@ module DearInventory
           },
           CurrencyRate: {
             name: :currency_rate,
-            type: :Numeric,
+            type: :BigDecimal,
           },
           DateCreated: {
             name: :date_created,

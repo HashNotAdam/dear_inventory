@@ -20,18 +20,12 @@ module DearInventory
     def initialize(request:, response:)
       @request = T.let(request, DearInventory::Models::Request)
       @response = T.let(response, HTTP::Response)
-      @body = T.let(nil, T.nilable(String))
       @http_status = T.let(nil, T.nilable(Integer))
       @model = T.let(nil, T.nilable(DearInventory::Model))
       @uri = T.let(nil, T.nilable(String))
 
       assign_values
       raise_error unless success?
-    end
-
-    sig { returns(T.untyped) }
-    def body
-      @body ||= JSON.parse(@response.body.to_s)
     end
 
     sig { returns(T.nilable(String)) }
@@ -69,6 +63,13 @@ module DearInventory
     sig { returns(String) }
     def uri
       @uri ||= @response.uri.to_s
+    end
+
+    protected
+
+    sig { returns(T.untyped) }
+    def body
+      JSON.parse(@response.body.to_s)
     end
 
     private

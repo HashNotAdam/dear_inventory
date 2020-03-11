@@ -29,7 +29,7 @@ module DearInventory
         },
         InvoiceDate: {
           name: :invoice_date,
-          type: :DateTime,
+          type: :Date,
         },
         InvoiceNumber: {
           name: :invoice_number,
@@ -37,7 +37,7 @@ module DearInventory
         },
         OrderDate: {
           name: :order_date,
-          type: :DateTime,
+          type: :Date,
         },
         OrderNumber: {
           name: :order_number,
@@ -53,11 +53,11 @@ module DearInventory
         },
         InvoiceDueDate: {
           name: :invoice_due_date,
-          type: :DateTime,
+          type: :Date,
         },
         ShipBy: {
           name: :ship_by,
-          type: :DateTime,
+          type: :Date,
         },
         BaseCurrency: {
           name: :base_currency,

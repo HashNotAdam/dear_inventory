@@ -3,8 +3,8 @@
 
 module DearInventory
   module Models
-    module Sales
-      class Quote < DearInventory::Model
+    module Purchases
+      class Order < DearInventory::Model
         extend T::Sig
 
         fields(
@@ -16,20 +16,20 @@ module DearInventory
             name: :status,
             type: :String,
           },
-          Prepayments: {
-            name: :prepayments,
-            type: :Array,
-            model: DearInventory::Models::Sales::PaymentLine,
-          },
           Lines: {
             name: :lines,
             type: :Array,
-            model: DearInventory::Models::Sales::Line,
+            model: DearInventory::Models::Purchases::Line,
           },
           AdditionalCharges: {
             name: :additional_charges,
             type: :Array,
-            model: DearInventory::Models::Sales::AdditionalCharge,
+            model: DearInventory::Models::Purchases::AdditionalCharge,
+          },
+          Prepayments: {
+            name: :prepayments,
+            type: :Array,
+            model: DearInventory::Models::Sales::PaymentLine,
           },
           TotalBeforeTax: {
             name: :total_before_tax,

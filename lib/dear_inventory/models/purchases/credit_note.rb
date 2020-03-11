@@ -3,33 +3,42 @@
 
 module DearInventory
   module Models
-    module Sales
-      class Quote < DearInventory::Model
+    module Purchases
+      class CreditNote < DearInventory::Model
         extend T::Sig
 
         fields(
-          Memo: {
-            name: :memo,
+          CreditNoteNumber: {
+            name: :credit_note_number,
             type: :String,
+          },
+          CreditNoteDate: {
+            name: :credit_note_date,
+            type: :Date,
           },
           Status: {
             name: :status,
             type: :String,
           },
-          Prepayments: {
-            name: :prepayments,
-            type: :Array,
-            model: DearInventory::Models::Sales::PaymentLine,
-          },
           Lines: {
             name: :lines,
             type: :Array,
-            model: DearInventory::Models::Sales::Line,
+            model: DearInventory::Models::Purchases::InvoiceLine,
           },
           AdditionalCharges: {
             name: :additional_charges,
             type: :Array,
-            model: DearInventory::Models::Sales::AdditionalCharge,
+            model: DearInventory::Models::Purchases::InvoiceAdditionalCharge,
+          },
+          Refunds: {
+            name: :refunds,
+            type: :Array,
+            model: DearInventory::Models::Sales::PaymentLine,
+          },
+          Unstock: {
+            name: :unstock,
+            type: :Array,
+            model: DearInventory::Models::Sales::PaymentLine,
           },
           TotalBeforeTax: {
             name: :total_before_tax,

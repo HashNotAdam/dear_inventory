@@ -34,7 +34,7 @@ module DearInventory
           },
           CurrencyConversionRate: {
             name: :currency_conversion_rate,
-            type: :Numeric,
+            type: :BigDecimal,
           },
           BillingAddressLine1: {
             name: :billing_address_line_1,
@@ -46,7 +46,7 @@ module DearInventory
           },
           LinkedFulfillmentNumber: {
             name: :linked_fulfillment_number,
-            type: :Numeric,
+            type: :Integer,
           },
           Lines: {
             name: :lines,
@@ -56,7 +56,7 @@ module DearInventory
           AdditionalCharges: {
             name: :additional_charges,
             type: :Array,
-            model: DearInventory::Models::AdditionalCharge,
+            model: DearInventory::Models::Sales::InvoiceAdditionalCharge,
           },
           Payments: {
             name: :payments,
@@ -65,19 +65,19 @@ module DearInventory
           },
           TotalBeforeTax: {
             name: :total_before_tax,
-            type: :Numeric,
+            type: :BigDecimal,
           },
           Tax: {
             name: :tax,
-            type: :Numeric,
+            type: :BigDecimal,
           },
           Total: {
             name: :total,
-            type: :Numeric,
+            type: :BigDecimal,
           },
           Paid: {
             name: :paid,
-            type: :Numeric,
+            type: :BigDecimal,
           }
         )
       end

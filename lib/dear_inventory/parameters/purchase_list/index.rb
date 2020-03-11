@@ -36,7 +36,7 @@ module DearInventory
           order_status: {
             property: :OrderStatus,
             type: :Enum,
-            values: ["VOIDED", "DRAFT", "AUTHORISED", "NOT AVAILABLE",],
+            values: ["VOIDED", "DRAFT", "AUTHORISED", "NOT AVAILABLE"],
             required: false,
           },
           restock_received_status: {
@@ -47,19 +47,19 @@ module DearInventory
           invoice_status: {
             property: :InvoiceStatus,
             type: :Enum,
-            values: ["VOIDED", "DRAFT", "AUTHORISED", "NOT AVAILABLE",],
+            values: ["VOIDED", "DRAFT", "AUTHORISED", "NOT AVAILABLE"],
             required: false,
           },
           credit_note_status: {
             property: :CreditNoteStatus,
             type: :Enum,
-            values: ["VOIDED", "DRAFT", "AUTHORISED", "NOT AVAILABLE",],
+            values: ["VOIDED", "DRAFT", "AUTHORISED", "NOT AVAILABLE"],
             required: false,
           },
           unstock_status: {
             property: :UnstockStatus,
             type: :Enum,
-            values: ["VOIDED", "DRAFT", "AUTHORISED", "NOT AVAILABLE",],
+            values: ["VOIDED", "DRAFT", "AUTHORISED", "NOT AVAILABLE"],
             required: false,
           },
           status: {
@@ -68,7 +68,7 @@ module DearInventory
             values: [
               "DRAFT", "VOIDED", "ORDERING", "ORDERED", "RECEIVING", "RECEIVED",
               "INVOICED", "CREDITED", "RECEIVING / CREDITED",
-              "RECEIVED / CREDITED", "PARTIALLY INVOICED", "COMPLETED"
+              "RECEIVED / CREDITED", "PARTIALLY INVOICED", "COMPLETED",
             ],
             required: false,
           },

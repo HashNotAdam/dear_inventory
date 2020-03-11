@@ -66,7 +66,7 @@ module DearInventory
       ).returns(
         T.nilable(
           T.any(
-            String, Numeric, T::Boolean,
+            Date, DateTime, String, Numeric, T::Boolean,
             DearInventory::Model, T::Array[DearInventory::Model]
           )
         )
@@ -80,6 +80,10 @@ module DearInventory
       value = values[response_name.to_s]
 
       case specifications[:type]
+      when :Date
+        ::Date.parse(value) unless value.nil?
+      when :DateTime
+        ::DateTime.parse(value) unless value.nil?
       when :Array
         initialize_array_values_in_models(value, T.must(model))
       when :Hash

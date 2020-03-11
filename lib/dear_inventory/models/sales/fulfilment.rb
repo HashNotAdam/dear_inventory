@@ -14,7 +14,7 @@ module DearInventory
           },
           FulfillmentNumber: {
             name: :fulfillment_number,
-            type: :Numeric,
+            type: :Integer,
           },
           LinkedInvoiceNumber: {
             name: :linked_invoice_number,

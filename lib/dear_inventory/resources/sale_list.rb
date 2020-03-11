@@ -14,7 +14,7 @@ module DearInventory
         params(params: T::Hash[Symbol, T.untyped]).
           returns(DearInventory::Response)
       end
-      def index(params: {})
+      def index(params = {})
         new.request(
           :get, params: params, model: DearInventory::Models::SaleLists
         )

@@ -3,7 +3,7 @@
 
 module DearInventory
   module Models
-    module Sales
+    module Purchases
       class ManualJournalLine < DearInventory::Model
         extend T::Sig
 
@@ -27,6 +27,10 @@ module DearInventory
           Credit: {
             name: :credit,
             type: :String,
+          },
+          IsSystem: {
+            name: :is_system,
+            type: :Boolean,
           }
         )
       end

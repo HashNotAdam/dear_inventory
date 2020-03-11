@@ -99,7 +99,7 @@ module DearInventory
         },
         COGSAmount: {
           name: :cogs_amount,
-          type: :Numeric,
+          type: :BigDecimal,
         },
         Status: {
           name: :status,
@@ -139,7 +139,7 @@ module DearInventory
         },
         CurrencyRate: {
           name: :currency_rate,
-          type: :Numeric,
+          type: :BigDecimal,
         },
         SalesRepresentative: {
           name: :sales_representative,

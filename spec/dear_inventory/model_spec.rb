@@ -30,7 +30,7 @@ RSpec.describe DearInventory::Model do
           name: :array,
           type: :Array,
           model: associated_test_model,
-        },
+        }
       )
     end
 

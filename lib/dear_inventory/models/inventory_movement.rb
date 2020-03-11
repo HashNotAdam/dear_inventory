@@ -17,11 +17,11 @@ module DearInventory
         },
         Date: {
           name: :date,
-          type: :DateTime,
+          type: :Date,
         },
         COGS: {
           name: :cogs,
-          type: :Numeric,
+          type: :BigDecimal,
         }
       )
     end
