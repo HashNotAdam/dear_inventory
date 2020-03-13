@@ -87,7 +87,7 @@ module DearInventory
     sig { returns(DearInventory::Error) }
     def raise_error
       raise T.unsafe(DearInventory::Error).
-        new("Unknown error (#{http_status}): #{error}", self)
+        new("Unknown error (#{http_status}): #{error}")
     end
   end
 end
