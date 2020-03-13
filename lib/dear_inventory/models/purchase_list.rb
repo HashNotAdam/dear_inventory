@@ -93,7 +93,7 @@ module DearInventory
         },
         LastUpdatedDate: {
           name: :last_updated_date,
-          type: :Date,
+          type: :DateTime,
         },
         CombinedReceivingStatus: {
           name: :combined_receiving_status,

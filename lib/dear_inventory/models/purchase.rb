@@ -103,7 +103,7 @@ module DearInventory
         },
         LastUpdatedDate: {
           name: :last_updated_date,
-          type: :Date,
+          type: :DateTime,
         },
         Order: {
           name: :order,
