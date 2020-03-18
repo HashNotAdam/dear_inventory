@@ -18,7 +18,7 @@ module DearInventory
           },
           Quantity: {
             name: :quantity,
-            type: :BigDecimal,
+            type: :Float,
           },
           Discount: {
             name: :discount,

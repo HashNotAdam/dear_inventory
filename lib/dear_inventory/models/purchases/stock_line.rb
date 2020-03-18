@@ -14,7 +14,7 @@ module DearInventory
           },
           Quantity: {
             name: :quantity,
-            type: :BigDecimal,
+            type: :Float,
           },
           ProductID: {
             name: :product_id,

@@ -22,7 +22,7 @@ module DearInventory
           },
           Quantity: {
             name: :quantity,
-            type: :BigDecimal,
+            type: :Float,
           },
           Price: {
             name: :price,

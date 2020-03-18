@@ -31,7 +31,7 @@ module DearInventory
             },
             Quantity: {
               name: :quantity,
-              type: :BigDecimal,
+              type: :Float,
             },
             BatchSN: {
               name: :batch_sn,
