@@ -20,8 +20,8 @@ module DearInventory
       ).void
     end
     def self.fields(fields)
-      if const_defined?(:FIELDS, false)
-        fields = remove_const(:FIELDS).merge(fields)
+      if ancestors[1].const_defined?(:FIELDS)
+        fields = ancestors[1]::FIELDS.merge(fields)
       end
       const_set(:FIELDS, fields.freeze)
 
