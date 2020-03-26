@@ -82,7 +82,7 @@ RSpec.configure do |config|
   config.order = :defined
 end
 
-Dir[File.dirname(__FILE__) + "/helpers/**/*.rb"].each { |f| require f }
+Dir[File.dirname(__FILE__) + "/helpers/**/*.rb"].sort.each { |f| require f }
 
 require "vcr"
 VCR.configure do |config|

@@ -7,7 +7,7 @@ AllCops:
   Exclude:
     - bin/**/*
 
-Layout/AlignParameters:
+Layout/ParameterAlignment:
   EnforcedStyle: with_fixed_indentation
 
 Layout/DotPosition:
@@ -17,7 +17,7 @@ Layout/EndAlignment:
   AutoCorrect: true
   EnforcedStyleAlignWith: variable
 
-Layout/IndentFirstArrayElement:
+Layout/FirstArrayElementIndentation:
   EnforcedStyle: consistent
 
 Layout/MultilineMethodCallIndentation:
@@ -36,6 +36,7 @@ Metrics/BlockLength:
     - spec/**/*
 
 Metrics/ClassLength:
+  Max: 150
   Exclude:
     - lib/dear_inventory/models/**/*
 

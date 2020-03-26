@@ -23,6 +23,8 @@ require "dear_inventory/models/address"
 require "dear_inventory/models/attachment"
 require "dear_inventory/models/bill_of_materials_product"
 require "dear_inventory/models/bill_of_materials_service"
+require "dear_inventory/models/customers/address"
+require "dear_inventory/models/customers/contact"
 require "dear_inventory/models/inventory_movement"
 require "dear_inventory/models/products/movement"
 require "dear_inventory/models/purchase_list"
@@ -58,6 +60,8 @@ require "dear_inventory/models/sales/fulfilments/ship"
 require "dear_inventory/models/sales/fulfilment"
 require "dear_inventory/models/sale_lists"
 
+require "dear_inventory/models/customer"
+require "dear_inventory/models/customers"
 require "dear_inventory/models/product"
 require "dear_inventory/models/products"
 require "dear_inventory/models/purchases/credit_note"
@@ -79,6 +83,7 @@ require "dear_inventory/validators/string"
 require "dear_inventory/validators/time"
 
 require "dear_inventory/parameters"
+require "dear_inventory/parameters/customer/index"
 require "dear_inventory/parameters/product/index"
 require "dear_inventory/parameters/purchase/index"
 require "dear_inventory/parameters/purchase_list/index"
@@ -86,6 +91,7 @@ require "dear_inventory/parameters/sale/index"
 require "dear_inventory/parameters/sale_list/index"
 
 require "dear_inventory/resource"
+require "dear_inventory/resources/customer"
 require "dear_inventory/resources/product"
 require "dear_inventory/resources/purchase"
 require "dear_inventory/resources/purchase_list"
@@ -107,9 +113,11 @@ module DearInventory
     sig { returns(Config) }
     attr_reader :config
 
+    # rubocop:disable Lint/UnusedMethodArgument
     sig { params(block: T.proc.params(config: Config).void).void }
     def configure(&block)
       yield config
     end
+    # rubocop:enable Lint/UnusedMethodArgument
   end
 end

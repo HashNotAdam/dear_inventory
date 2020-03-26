@@ -125,7 +125,7 @@ module DearInventory
         },
         PriceTiers: {
           name: :price_tiers,
-          type: :Untyped
+          type: :Untyped,
         },
         AverageCost: {
           name: :average_cost,
