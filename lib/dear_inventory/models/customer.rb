@@ -71,8 +71,8 @@ module DearInventory
           name: :credit_limit,
           type: :Integer,
         },
-        Tag: {
-          name: :tag,
+        Tags: {
+          name: :tags,
           type: :String,
         },
         AttributeSet: {
