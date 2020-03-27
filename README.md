@@ -20,6 +20,19 @@ Or install it yourself as:
 
     $ gem install dear_inventory
 
+## N.B for Ruby 2.7
+
+At time of writing, the Sorbet team has not yet accepted my pull request to fix
+deprecation warnings due to the use of the single splat operator. It can be
+quite frustrating to have your console flooded with warnings and so it may be
+worth your while specifying my fork of sorbet-runtime in your project's Gemfile:
+```
+gem "sorbet-runtime",
+    git: "https://github.com/HashNotAdam/sorbet.git",
+    branch: "feature/ruby_2_7_keyword_arguments",
+    glob: "gems/sorbet-runtime/sorbet-runtime.gemspec"
+```
+
 ## Usage
 
 Before you begin, you will need to setup API credentials in DEAR Inventory at
