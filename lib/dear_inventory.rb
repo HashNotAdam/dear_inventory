@@ -9,8 +9,10 @@ require "dear_inventory/environment"
 
 require "dear_inventory/error"
 require "dear_inventory/errors/not_paginated"
-require "dear_inventory/errors/request"
 require "dear_inventory/errors/validation"
+
+require "dear_inventory/errors/request"
+require "dear_inventory/errors/bad_request"
 
 require "dear_inventory/lib/endpoint_class"
 require "dear_inventory/lib/date_time"

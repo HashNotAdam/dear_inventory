@@ -5,6 +5,9 @@ module DearInventory
   class RequestError < Error
     extend T::Sig
 
+    sig { returns(T.nilable(DearInventory::Response)) }
+    attr_reader :response
+
     sig do
       params(
         message: T.nilable(String),
@@ -15,26 +18,6 @@ module DearInventory
       super(message)
 
       @response = T.let(response, T.nilable(DearInventory::Response))
-    end
-
-    sig { returns(T.nilable(String)) }
-    def http_body
-      @response&.error || @response&.body&.to_s
-    end
-
-    sig { returns(T.nilable(T::Hash[Symbol, String])) }
-    def http_headers
-      @response&.headers
-    end
-
-    sig { returns(T.nilable(Integer)) }
-    def http_status
-      @response&.http_status
-    end
-
-    sig { returns(T.nilable(String)) }
-    def uri
-      @response&.uri&.to_s
     end
   end
 end

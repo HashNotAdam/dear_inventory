@@ -30,8 +30,9 @@ module DearInventory
 
     sig { returns(T.nilable(String)) }
     def error
-      # body.fetch("message", nil) if body.respond_to?(:fetch)
-      "Error goes here"
+      return body.fetch("Exception", nil) if body.respond_to?(:fetch)
+
+      body
     end
 
     sig { returns(T::Hash[Symbol, String]) }
@@ -86,6 +87,10 @@ module DearInventory
 
     sig { returns(DearInventory::Error) }
     def raise_error
+      if http_status == 400
+        raise T.unsafe(DearInventory::BadRequestError).new(error, self)
+      end
+
       raise T.unsafe(DearInventory::Error).
         new("Unknown error (#{http_status}): #{error}")
     end
