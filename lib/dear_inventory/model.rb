@@ -53,6 +53,16 @@ module DearInventory
       end
     end
 
+    sig { returns(T::Hash[Symbol, T.untyped]) }
+    def to_h
+      {}.tap do |hash|
+        self.class.enumerate_fields do |_, specifications|
+          key = specifications[:name]
+          hash[key] = public_send(key)
+        end
+      end
+    end
+
     private
 
     # rubocop:disable Metrics/AbcSize
