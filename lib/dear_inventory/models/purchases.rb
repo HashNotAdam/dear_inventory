@@ -120,6 +120,11 @@ module DearInventory
           type: :Guid,
         }
       )
+
+      sig { returns(DearInventory::Response) }
+      def purchase
+        DearInventory::Purchase.(id: id)
+      end
     end
   end
 end
