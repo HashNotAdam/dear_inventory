@@ -17,6 +17,8 @@ module DearInventory
       def index(params = {})
         new.request(:get, params: params, model: DearInventory::Models::Sale)
       end
+
+      alias call index
     end
   end
 end

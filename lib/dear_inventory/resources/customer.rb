@@ -19,6 +19,8 @@ module DearInventory
           :get, params: params, model: DearInventory::Models::Customers
         )
       end
+
+      alias call index
     end
   end
 end
