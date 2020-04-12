@@ -101,7 +101,7 @@ module DearInventory
         ::Date.parse(value) unless value.nil?
       when :DateTime
         ::DateTime.parse(value) unless value.nil?
-      when :Array
+      when :Array, :ResultSet
         initialize_array_values_in_models(value, T.must(model))
       when :Hash
         T.must(model).new(value)

@@ -11,6 +11,7 @@ module DearInventory
     sig { returns(HTTP::Response) }
     attr_reader :response
 
+    # rubocop:disable Metrics/AbcSize
     sig do
       params(
         request: DearInventory::Models::Request,
@@ -22,6 +23,8 @@ module DearInventory
       @request = T.let(request, DearInventory::Models::Request)
       @response = T.let(response, HTTP::Response)
       @num_previous_records = T.let(num_previous_records, Integer)
+
+      @num_records_paged = T.let(nil, T.nilable(Integer))
       @http_status = T.let(nil, T.nilable(Integer))
       @model = T.let(nil, T.nilable(DearInventory::Model))
       @uri = T.let(nil, T.nilable(String))
@@ -29,6 +32,7 @@ module DearInventory
       assign_values
       raise_error unless success?
     end
+    # rubocop:enable Metrics/AbcSize
 
     sig { returns(T.nilable(String)) }
     def error
@@ -47,12 +51,27 @@ module DearInventory
       @http_status ||= @response.status.code
     end
 
-    # rubocop:disable Metrics/AbcSize
+    sig { returns(T::Boolean) }
+    def paginated?
+      T.must(@model).respond_to?(:page)
+    end
+
+    sig { params(_blk: T.proc.params(arg0: DearInventory::Model).void).void }
+    def each(&_blk)
+      raise_not_paginated unless paginated?
+
+      response = self
+      loop do
+        T.unsafe(response).records.each { |record| yield(record) }
+        break unless response.next_page?
+
+        response = response.next_page
+      end
+    end
+
     sig { returns(DearInventory::Response) }
     def next_page
-      unless T.must(@model).respond_to?(:page)
-        raise DearInventory::NotPaginatedError.new(uri: uri)
-      end
+      raise_not_paginated unless paginated?
       raise DearInventory::NoMorePagesError unless next_page?
 
       request = @request.dup
@@ -60,22 +79,26 @@ module DearInventory
 
       DearInventory::Request.(request, num_previous_records: num_records_paged)
     end
-    # rubocop:enable Metrics/AbcSize
 
+    sig { returns(T::Boolean) }
     def next_page?
-      unless T.must(@model).respond_to?(:page)
-        raise DearInventory::NotPaginatedError.new(uri: uri)
-      end
+      raise_not_paginated unless paginated?
 
-      num_records_paged < total
+      num_records_paged < T.unsafe(self).total
     end
 
+    sig { returns(Integer) }
     def num_records_paged
-      unless T.must(@model).respond_to?(:page)
-        raise DearInventory::NotPaginatedError.new(uri: uri)
-      end
+      @num_records_paged ||= begin
+        raise_not_paginated unless paginated?
 
-      @num_records_paged ||= @num_previous_records + records.count
+        @num_previous_records + T.unsafe(self).records.count
+      end
+    end
+
+    sig { void }
+    def raise_not_paginated
+      raise DearInventory::NotPaginatedError.new(uri: uri)
     end
 
     sig { returns(T::Boolean) }
