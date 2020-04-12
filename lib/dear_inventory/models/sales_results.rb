@@ -16,7 +16,7 @@ module DearInventory
           type: :Integer,
         },
         SaleList: {
-          name: :sale_list,
+          name: :sales,
           type: :ResultSet,
           model: DearInventory::Models::Sales,
         }
