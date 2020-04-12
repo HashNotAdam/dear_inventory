@@ -14,12 +14,14 @@ module DearInventory
     sig do
       params(
         request: DearInventory::Models::Request,
-        response: HTTP::Response
+        response: HTTP::Response,
+        num_previous_records: Integer
       ).void
     end
-    def initialize(request:, response:)
+    def initialize(request:, response:, num_previous_records: 0)
       @request = T.let(request, DearInventory::Models::Request)
       @response = T.let(response, HTTP::Response)
+      @num_previous_records = T.let(num_previous_records, Integer)
       @http_status = T.let(nil, T.nilable(Integer))
       @model = T.let(nil, T.nilable(DearInventory::Model))
       @uri = T.let(nil, T.nilable(String))
@@ -45,16 +47,22 @@ module DearInventory
       @http_status ||= @response.status.code
     end
 
+    # rubocop:disable Metrics/AbcSize
     sig { returns(DearInventory::Response) }
     def next_page
       unless T.must(@model).respond_to?(:page)
         raise DearInventory::NotPaginatedError.new(uri: uri)
       end
 
+      num_records = @num_previous_records + records.count
+      raise DearInventory::NoMorePagesError if num_records >= total
+
       request = @request.dup
       T.unsafe(request.params).page = T.unsafe(@model).page + 1
-      DearInventory::Request.(request)
+
+      DearInventory::Request.(request, num_previous_records: num_records)
     end
+    # rubocop:enable Metrics/AbcSize
 
     sig { returns(T::Boolean) }
     def success?

@@ -6,18 +6,24 @@ module DearInventory
     extend T::Sig
 
     sig do
-      params(parameters: DearInventory::Models::Request).
-        returns(DearInventory::Response)
+      params(
+        parameters: DearInventory::Models::Request,
+        num_previous_records: Integer
+      ).returns(DearInventory::Response)
     end
-    def self.call(parameters)
-      new(parameters).call
+    def self.call(parameters, num_previous_records: 0)
+      new(parameters, num_previous_records: num_previous_records).call
     end
 
     sig do
-      params(parameters: DearInventory::Models::Request).void
+      params(
+        parameters: DearInventory::Models::Request,
+        num_previous_records: Integer
+      ).void
     end
-    def initialize(parameters)
-      @parameters = parameters
+    def initialize(parameters, num_previous_records: 0)
+      @parameters = T.let(parameters, DearInventory::Models::Request)
+      @num_previous_records = T.let(num_previous_records, Integer)
     end
 
     sig { returns(DearInventory::Response) }
@@ -28,7 +34,8 @@ module DearInventory
 
       DearInventory::Response.new(
         response: response,
-        request: @parameters
+        request: @parameters,
+        num_previous_records: @num_previous_records
       )
     end
 
