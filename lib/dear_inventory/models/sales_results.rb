@@ -3,7 +3,7 @@
 
 module DearInventory
   module Models
-    class SaleLists < DearInventory::Model
+    class SalesResults < DearInventory::Model
       extend T::Sig
 
       fields(
@@ -18,7 +18,7 @@ module DearInventory
         SaleList: {
           name: :sale_list,
           type: :ResultSet,
-          model: DearInventory::Models::SaleList,
+          model: DearInventory::Models::Sales,
         }
       )
     end

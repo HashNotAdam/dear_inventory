@@ -3,7 +3,7 @@
 
 module DearInventory
   module Models
-    module Sales
+    class Sales < DearInventory::Model
       class Quote < DearInventory::Model
         extend T::Sig
 

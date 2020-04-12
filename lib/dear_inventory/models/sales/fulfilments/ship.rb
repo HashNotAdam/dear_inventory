@@ -3,7 +3,7 @@
 
 module DearInventory
   module Models
-    module Sales
+    class Sales < DearInventory::Model
       class Fulfilments
         class Ship < DearInventory::Model
           extend T::Sig

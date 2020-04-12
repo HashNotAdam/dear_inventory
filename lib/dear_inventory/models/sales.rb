@@ -3,7 +3,7 @@
 
 module DearInventory
   module Models
-    class SaleList < DearInventory::Model
+    class Sales < DearInventory::Model
       extend T::Sig
 
       fields(

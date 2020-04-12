@@ -2,21 +2,23 @@
 # frozen_string_literal: true
 
 module DearInventory
-  class SaleList < Resource
+  class Sales < Resource
+    RESOURCE_BASE = T.let("salelist", String)
+
     class << self
       extend T::Sig
 
       # Sale List
       #
       # @param params [Hash] URL query string parameters that conform to
-      #   DearInventory::Parameters::SaleList::Index
+      #   DearInventory::Parameters::Sales::Index
       sig do
         params(params: T::Hash[Symbol, T.untyped]).
           returns(DearInventory::Response)
       end
       def index(params = {})
         new.request(
-          :get, params: params, model: DearInventory::Models::SaleLists
+          :get, params: params, model: DearInventory::Models::SalesResults
         )
       end
 

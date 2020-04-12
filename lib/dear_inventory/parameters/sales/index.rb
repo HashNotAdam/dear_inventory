@@ -3,7 +3,7 @@
 
 module DearInventory
   class Parameters
-    module SaleList
+    module Sales
       class Index < DearInventory::Parameters
         extend T::Sig
 
