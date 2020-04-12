@@ -53,16 +53,30 @@ module DearInventory
       unless T.must(@model).respond_to?(:page)
         raise DearInventory::NotPaginatedError.new(uri: uri)
       end
-
-      num_records = @num_previous_records + records.count
-      raise DearInventory::NoMorePagesError if num_records >= total
+      raise DearInventory::NoMorePagesError unless next_page?
 
       request = @request.dup
       T.unsafe(request.params).page = T.unsafe(@model).page + 1
 
-      DearInventory::Request.(request, num_previous_records: num_records)
+      DearInventory::Request.(request, num_previous_records: num_records_paged)
     end
     # rubocop:enable Metrics/AbcSize
+
+    def next_page?
+      unless T.must(@model).respond_to?(:page)
+        raise DearInventory::NotPaginatedError.new(uri: uri)
+      end
+
+      num_records_paged < total
+    end
+
+    def num_records_paged
+      unless T.must(@model).respond_to?(:page)
+        raise DearInventory::NotPaginatedError.new(uri: uri)
+      end
+
+      @num_records_paged ||= @num_previous_records + records.count
+    end
 
     sig { returns(T::Boolean) }
     def success?
