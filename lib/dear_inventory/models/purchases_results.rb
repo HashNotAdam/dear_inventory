@@ -3,7 +3,7 @@
 
 module DearInventory
   module Models
-    class PurchaseLists < DearInventory::Model
+    class PurchasesResults < DearInventory::Model
       extend T::Sig
 
       fields(
@@ -16,9 +16,9 @@ module DearInventory
           type: :Integer,
         },
         PurchaseList: {
-          name: :purchase_list,
+          name: :purchases,
           type: :ResultSet,
-          model: DearInventory::Models::PurchaseList,
+          model: DearInventory::Models::Purchases,
         }
       )
     end

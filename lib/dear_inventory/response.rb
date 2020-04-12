@@ -23,16 +23,27 @@ module DearInventory
       @request = T.let(request, DearInventory::Models::Request)
       @response = T.let(response, HTTP::Response)
       @num_previous_records = T.let(num_previous_records, Integer)
+      @model = T.let(@request.model.new(body), DearInventory::Model)
 
       @num_records_paged = T.let(nil, T.nilable(Integer))
       @http_status = T.let(nil, T.nilable(Integer))
-      @model = T.let(nil, T.nilable(DearInventory::Model))
       @uri = T.let(nil, T.nilable(String))
 
       assign_values
       raise_error unless success?
     end
     # rubocop:enable Metrics/AbcSize
+
+    sig { returns(T::Array[Symbol]) }
+    def fields
+      @fields ||= begin
+        values = @request.model.const_get(:FIELDS).values.map do |field|
+          field[:name]
+        end
+        values.unshift(:records) if @model.respond_to?(:records)
+        values
+      end
+    end
 
     sig { returns(T.nilable(String)) }
     def error
@@ -122,13 +133,7 @@ module DearInventory
 
     sig { void }
     def assign_values
-      @model = @request.model.new(body)
-
-      @request.model.const_get(:FIELDS).each do |_, specifications|
-        define_alias_method(specifications[:name])
-      end
-
-      define_alias_method(:records) if @model.respond_to?(:records)
+      fields.each { |field| define_alias_method(field) }
     end
 
     sig { params(method_name: Symbol).void }

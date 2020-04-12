@@ -3,7 +3,7 @@
 
 module DearInventory
   module Models
-    module Purchases
+    class Purchases < DearInventory::Model
       class InventoryMovement < DearInventory::Model
         extend T::Sig
 

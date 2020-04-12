@@ -117,7 +117,7 @@ module DearInventory
         },
         LastModifiedOn: {
           name: :last_modified_on,
-          type: :String,
+          type: :DateTime,
         },
         Addresses: {
           name: :addresses,

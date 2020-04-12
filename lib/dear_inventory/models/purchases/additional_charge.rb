@@ -3,7 +3,7 @@
 
 module DearInventory
   module Models
-    module Purchases
+    class Purchases < DearInventory::Model
       class AdditionalCharge < DearInventory::Model
         extend T::Sig
 

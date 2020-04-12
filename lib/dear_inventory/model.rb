@@ -75,9 +75,6 @@ module DearInventory
 
     private
 
-    # rubocop:disable Metrics/AbcSize
-    # rubocop:disable Metrics/CyclomaticComplexity
-    # rubocop:disable Metrics/MethodLength
     sig do
       params(
         response_name: Symbol,
@@ -93,23 +90,29 @@ module DearInventory
         T.nilable(T.class_of(DearInventory::Model))
       )
       value = values[response_name.to_s]
+      return if value == ""
 
-      case specifications[:type]
+      format_value(value, specifications[:type], model)
+    end
+
+    # rubocop:disable Metrics/CyclomaticComplexity
+    # rubocop:disable Metrics/MethodLength
+    def format_value(value, type, model)
+      case type
+      when :Array, :ResultSet
+        initialize_array_values_in_models(value, T.must(model))
       when :BigDecimal
         value.to_d
       when :Date
         ::Date.parse(value) unless value.nil?
       when :DateTime
         ::DateTime.parse(value) unless value.nil?
-      when :Array, :ResultSet
-        initialize_array_values_in_models(value, T.must(model))
       when :Hash
         T.must(model).new(value)
       else
         value
       end
     end
-    # rubocop:enable Metrics/AbcSize
     # rubocop:enable Metrics/CyclomaticComplexity
     # rubocop:enable Metrics/MethodLength
 

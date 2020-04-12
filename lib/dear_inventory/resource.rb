@@ -33,7 +33,13 @@ module DearInventory
 
     sig { params(endpoint: T.nilable(String)).returns(String) }
     def resource_uri(endpoint)
-      resource = T.must(self.class.name).split("::").last
+      resource =
+        if self.class.const_defined?(:RESOURCE_BASE)
+          self.class.const_get(:RESOURCE_BASE)
+        else
+          T.must(self.class.name).split("::").last
+        end
+
       uri = "#{URI_BASE}/#{T.must(resource).downcase}"
       uri += "/#{endpoint}" unless endpoint.nil?
       uri

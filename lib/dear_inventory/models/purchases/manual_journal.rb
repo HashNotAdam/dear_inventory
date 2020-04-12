@@ -3,7 +3,7 @@
 
 module DearInventory
   module Models
-    module Purchases
+    class Purchases < DearInventory::Model
       class ManualJournal < DearInventory::Model
         extend T::Sig
 
