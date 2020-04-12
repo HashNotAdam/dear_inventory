@@ -128,6 +128,11 @@ module DearInventory
           type: :String,
         }
       )
+
+      sig { returns(DearInventory::Response) }
+      def sale
+        DearInventory::Sale.(id: id)
+      end
     end
   end
 end
