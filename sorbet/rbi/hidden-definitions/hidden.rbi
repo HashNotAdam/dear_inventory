@@ -14376,10 +14376,6 @@ module Readline
   def self.vi_editing_mode?(); end
 end
 
-class Regexp
-  def match?(*_); end
-end
-
 module Reline
   def eof?(*args, &block); end
   FILENAME_COMPLETION_PROC = ::T.let(nil, ::T.untyped)
