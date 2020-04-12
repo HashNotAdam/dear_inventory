@@ -15,14 +15,11 @@ module DearInventory
       ).returns(DearInventory::Response)
     end
     def request(action, model:, endpoint: nil, params: {})
-      uri = resource_uri(endpoint)
-      params = DearInventory::Parameters.convert(self.class, endpoint, params)
-
       request = DearInventory::Models::Request.new(
         action: action,
         model: model,
-        params: params,
-        uri: uri
+        params: DearInventory::Parameters.convert(self.class, endpoint, params),
+        uri: resource_uri(endpoint)
       )
       DearInventory::Request.(request)
     end
@@ -33,12 +30,7 @@ module DearInventory
 
     sig { params(endpoint: T.nilable(String)).returns(String) }
     def resource_uri(endpoint)
-      resource =
-        if self.class.const_defined?(:RESOURCE_BASE)
-          self.class.const_get(:RESOURCE_BASE)
-        else
-          T.must(self.class.name).split("::").last
-        end
+      resource = T.must(self.class.name).split("::").last
 
       uri = "#{URI_BASE}/#{T.must(resource).downcase}"
       uri += "/#{endpoint}" unless endpoint.nil?

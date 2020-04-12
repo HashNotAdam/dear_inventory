@@ -131,7 +131,7 @@ module DearInventory
 
       sig { returns(DearInventory::Response) }
       def sale
-        DearInventory::Sale.(id: id)
+        DearInventory::Sale.show(id: id)
       end
     end
   end

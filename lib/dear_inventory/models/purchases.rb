@@ -123,7 +123,7 @@ module DearInventory
 
       sig { returns(DearInventory::Response) }
       def purchase
-        DearInventory::Purchase.(id: id)
+        DearInventory::Purchase.show(id: id)
       end
     end
   end
