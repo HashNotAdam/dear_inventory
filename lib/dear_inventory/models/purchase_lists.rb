@@ -17,7 +17,7 @@ module DearInventory
         },
         PurchaseList: {
           name: :purchase_list,
-          type: :Array,
+          type: :ResultSet,
           model: DearInventory::Models::PurchaseList,
         }
       )

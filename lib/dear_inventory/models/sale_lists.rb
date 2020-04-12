@@ -17,7 +17,7 @@ module DearInventory
         },
         SaleList: {
           name: :sale_list,
-          type: :Array,
+          type: :ResultSet,
           model: DearInventory::Models::SaleList,
         }
       )

@@ -20,13 +20,23 @@ module DearInventory
       ).void
     end
     def self.fields(fields)
-      if ancestors[1].const_defined?(:FIELDS)
-        fields = ancestors[1]::FIELDS.merge(fields)
+      ancestor = T.must(ancestors[1])
+      if ancestor.const_defined?(:FIELDS)
+        fields = ancestor.const_get(:FIELDS).merge(fields)
       end
       const_set(:FIELDS, fields.freeze)
 
+      define_readers
+    end
+
+    sig { void }
+    def self.define_readers
       enumerate_fields do |_, specifications|
         __send__(:attr_reader, specifications[:name])
+
+        if specifications[:type] == :ResultSet
+          alias_method :records, specifications[:name]
+        end
       end
     end
 

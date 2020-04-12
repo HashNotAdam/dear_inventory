@@ -78,10 +78,18 @@ module DearInventory
     sig { void }
     def assign_values
       @model = @request.model.new(body)
+
       @request.model.const_get(:FIELDS).each do |_, specifications|
-        define_singleton_method(specifications[:name]) do
-          @model.public_send(specifications[:name])
-        end
+        define_alias_method(specifications[:name])
+      end
+
+      define_alias_method(:records) if @model.respond_to?(:records)
+    end
+
+    sig { params(method_name: Symbol).void }
+    def define_alias_method(method_name)
+      define_singleton_method(method_name) do
+        @model.public_send(method_name)
       end
     end
 

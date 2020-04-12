@@ -17,7 +17,7 @@ module DearInventory
         },
         Products: {
           name: :products,
-          type: :Array,
+          type: :ResultSet,
           model: DearInventory::Models::Product,
         }
       )
