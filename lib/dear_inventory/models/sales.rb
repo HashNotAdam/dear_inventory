@@ -130,8 +130,8 @@ module DearInventory
       )
 
       sig { returns(DearInventory::Response) }
-      def sale
-        DearInventory::Sale.show(id: id)
+      def full_record
+        DearInventory::Sale.show(id: T.unsafe(self).id)
       end
     end
   end

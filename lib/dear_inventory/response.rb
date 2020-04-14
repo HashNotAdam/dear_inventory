@@ -68,16 +68,16 @@ module DearInventory
 
     sig { returns(T::Boolean) }
     def paginated?
-      T.must(@model).respond_to?(:page)
+      @model.respond_to?(:page)
     end
 
-    sig { params(_blk: T.proc.params(arg0: DearInventory::Model).void).void }
-    def each(&_blk)
+    sig { params(block: T.proc.params(arg0: DearInventory::Model).void).void }
+    def each(&block)
       raise_not_paginated unless paginated?
 
       response = self
       loop do
-        T.unsafe(response).records.each { |record| yield(record) }
+        iterate_over_records(response, block)
         break unless response.next_page?
 
         response = response.next_page
@@ -155,6 +155,25 @@ module DearInventory
 
       raise T.unsafe(DearInventory::Error).
         new("Unknown error (#{http_status}): #{error}")
+    end
+
+    sig do
+      params(
+        response: DearInventory::Response,
+        block: T.proc.params(arg0: DearInventory::Model).void
+      ).void
+    end
+    def iterate_over_records(response, block)
+      T.unsafe(response).records.each do |record|
+        record = record.full_record if load_full_record?
+        block.call(record)
+      end
+    end
+
+    sig { returns(T::Boolean) }
+    def load_full_record?
+      @load_full_record ||=
+        T.unsafe(self).records.first.respond_to?(:full_record)
     end
   end
 end
