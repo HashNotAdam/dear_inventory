@@ -12,6 +12,7 @@ module DearInventory
     attr_reader :response
 
     # rubocop:disable Metrics/AbcSize
+    # rubocop:disable Metrics/MethodLength
     sig do
       params(
         request: DearInventory::Models::Request,
@@ -25,14 +26,17 @@ module DearInventory
       @num_previous_records = T.let(num_previous_records, Integer)
       @model = T.let(@request.model.new(body), DearInventory::Model)
 
-      @num_records_paged = T.let(nil, T.nilable(Integer))
+      @fields = T.let(nil, T.nilable(T::Array[Symbol]))
       @http_status = T.let(nil, T.nilable(Integer))
+      @load_full_record = T.let(nil, T.nilable(T::Boolean))
+      @num_records_paged = T.let(nil, T.nilable(Integer))
       @uri = T.let(nil, T.nilable(String))
 
       assign_values
       raise_error unless success?
     end
     # rubocop:enable Metrics/AbcSize
+    # rubocop:enable Metrics/MethodLength
 
     sig { returns(T::Array[Symbol]) }
     def fields

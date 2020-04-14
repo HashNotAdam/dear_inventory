@@ -1,4 +1,4 @@
-# typed: strong
+# typed: strict
 # frozen_string_literal: true
 
 module DearInventory
@@ -122,8 +122,13 @@ module DearInventory
       )
 
       sig { returns(DearInventory::Response) }
-      def purchase
-        DearInventory::Purchase.show(id: id)
+      def full_record
+        case T.unsafe(self).type
+        when "Advanced Purchase", "Service Purchase"
+          DearInventory::AdvancedPurchase.show(id: T.unsafe(self).id)
+        else
+          DearInventory::Purchase.show(id: T.unsafe(self).id)
+        end
       end
     end
   end
