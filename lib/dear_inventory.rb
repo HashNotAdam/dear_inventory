@@ -8,6 +8,7 @@ require "dear_inventory/config"
 require "dear_inventory/environment"
 
 require "dear_inventory/error"
+require "dear_inventory/errors/api_limit"
 require "dear_inventory/errors/no_more_pages"
 require "dear_inventory/errors/not_paginated"
 require "dear_inventory/errors/validation"

@@ -24,7 +24,6 @@ module DearInventory
       @request = T.let(request, DearInventory::Models::Request)
       @response = T.let(response, HTTP::Response)
       @num_previous_records = T.let(num_previous_records, Integer)
-      @model = T.let(@request.model.new(body), DearInventory::Model)
 
       @fields = T.let(nil, T.nilable(T::Array[Symbol]))
       @http_status = T.let(nil, T.nilable(Integer))
@@ -32,8 +31,10 @@ module DearInventory
       @num_records_paged = T.let(nil, T.nilable(Integer))
       @uri = T.let(nil, T.nilable(String))
 
-      assign_values
       raise_error unless success?
+
+      @model = T.let(@request.model.new(body), DearInventory::Model)
+      assign_values
     end
     # rubocop:enable Metrics/AbcSize
     # rubocop:enable Metrics/MethodLength
@@ -128,9 +129,12 @@ module DearInventory
 
     protected
 
-    sig { returns(T.untyped) }
+    sig { returns(T.any(T::Hash[String, T.untyped], String)) }
     def body
-      JSON.parse(@response.body.to_s)
+      string_body = @response.body.to_s
+      JSON.parse(string_body)
+    rescue JSON::ParserError
+      string_body
     end
 
     private
@@ -147,15 +151,25 @@ module DearInventory
       end
     end
 
+    API_LIMIT_ERROR = T.let(
+      "You have reached 60 calls per 60 seconds API limit.", String
+    )
+
+    # rubocop:disable Metrics/AbcSize
     sig { returns(DearInventory::Error) }
     def raise_error
       if http_status == 400
         raise T.unsafe(DearInventory::BadRequestError).new(error, self)
       end
 
+      if http_status == 503 && error == API_LIMIT_ERROR
+        raise T.unsafe(DearInventory::APILimitError)
+      end
+
       raise T.unsafe(DearInventory::Error).
         new("Unknown error (#{http_status}): #{error}")
     end
+    # rubocop:enable Metrics/AbcSize
 
     sig do
       params(
