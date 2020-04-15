@@ -30,13 +30,25 @@ DearInventory::Sale.()
 
 ### Response
 
-The index endpoint returns a paginated set of sale summary records. If you would like to load the full sale, you can either use the helper method, `sale`, or call the `DearInventory::Sale.show` resource.
+The index endpoint returns a paginated set of sale summary records. If you would like to load the full purchase, you can either use the helper method, `full_record`, or call `DearInventory::Sale.show` resource.
 
 ```ruby
-DearInventory::Sale.().each do |sale_summary|
-  sale = sale_summary.sale
-  # OR
-  sale = DearInventory::Sale.show(id: sale.id)
+DearInventory::Sale.().records.each do |sale_summary|
+  sale = sale_summary.full_record
+end
+```
+
+```ruby
+DearInventory::Sale.().records.each do |sale_summary|
+  sale = DearInventory::Sale.show(id: sale_summary.id)
+end
+```
+
+If you use the `each` helper method, it will automatically return the full record each time. Given it makes n+1 API requests, the time per iteration will be a lot slower than iterating over `records` directly, however, it's much nicer if you intend to load every record anway.
+
+```ruby
+DearInventory::Sale.().each do |sale|
+  so_stuff_with_the_full_sale_record(sale)
 end
 ```
 
@@ -60,7 +72,7 @@ DearInventory::Sale.show
 
 | Name | Type | Required |
 | --- | --- | --- |
-| id | String | True |
+| id | String | true |
 | combine_additional_charges | Boolean | false |
 | hide_inventory_movements | Boolean | false |
 | include_transactions | Boolean | false |

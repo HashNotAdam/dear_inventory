@@ -2,7 +2,7 @@
 
 A Ruby API client for connecting to DEAR Inventory. At this point, I have only been implementing the GET requests based upon our business needs but, if you like the look of this gem but require a missing endpoint, it would be quite easy to bolt on POST/PUT/Delete endpoints.
 
-Honestly, the DEAR API is a mess—where possible, this gem attempts to hide the rampant inconsistencies and provide continuity but I'm afraid I'm no magician.
+Honestly, the DEAR API is a mess. Where possible, this gem attempts to hide the rampant inconsistencies and provide continuity but I'm afraid I'm no magician.
 
 ## Installation
 
@@ -30,7 +30,7 @@ gem "sorbet-runtime",
     glob: "gems/sorbet-runtime/sorbet-runtime.gemspec"
 ```
 
-## Usage
+## Configuration
 
 Before you begin, you will need to setup API credentials in DEAR Inventory at https://inventory.dearsystems.com/ExternalApi
 
@@ -44,19 +44,21 @@ DearInventory.configure do |config|
 end
 ```
 
+There is a default logger set to write to STDOUT which is also configurable
+
+```ruby
+DearInventory.configure do |config|
+  ...
+  config.logger = CustomLogger.new
+end
+```
+
 ## Endpoints
 
 [Customer](https://github.com/HashNotAdam/dear_inventory-ruby/docs/resources/customer.md)
 [Product](https://github.com/HashNotAdam/dear_inventory-ruby/docs/resources/product.md)
-
-### Purchases
-
-[Purchases](https://github.com/HashNotAdam/dear_inventory-ruby/docs/resources/purchases.md)
 [Purchase](https://github.com/HashNotAdam/dear_inventory-ruby/docs/resources/purchase.md)
-
-### Sales
-
-[Sales](https://github.com/HashNotAdam/dear_inventory-ruby/docs/resources/sales.md)
+[Advanced Purchase](https://github.com/HashNotAdam/dear_inventory-ruby/docs/resources/advanced_purchase.md)
 [Sale](https://github.com/HashNotAdam/dear_inventory-ruby/docs/resources/sale.md)
 
 ## Managing pagination
@@ -68,7 +70,7 @@ The response object for any endpoint that returns a paginated result set will in
 `each` iterates over all the records as if they were not paginated, automatically retrieving subsequent pages.
 
 ```ruby
-DearInventory::SaleList.index.each do |record|
+DearInventory::Customer.().each do |record|
 	do_some_things(record)
 end
 ```
@@ -78,7 +80,7 @@ end
 If you would like control over the pagination process, the paginated responses include a `next_page` method
 
 ```ruby
-response = DearInventory::SaleList.index
+response = DearInventory::Customer.()
 
 loop do
   do_some_things(response)

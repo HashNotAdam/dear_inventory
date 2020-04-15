@@ -26,13 +26,31 @@ DearInventory::Purchase.()
 
 ### Response
 
-The index endpoint returns a paginated set of purchase summary records. If you would like to load the full purchase, you can either use the helper method, `purchase`, or call the `DearInventory::Purchase` resource.
+The index endpoint returns a paginated set of purchase summary records. If you would like to load the full purchase, you can either use the helper method, `full_record`, or call the appropriate resource directly, keeping in mind that Simple and Advanced/Service purchases have different resources... because DEAR :shrug:
 
 ```ruby
-DearInventory::Purchase.().each do |purchase_summary|
-  purchase = purchase_summary.purchase
-  # OR
-  purchase = DearInventory::Purchase.show(id: purchase_summary.id)
+DearInventory::Purchase.().records.each do |purchase_summary|
+  purchase = purchase_summary.full_record
+end
+```
+
+```ruby
+DearInventory::Purchase.().records.each do |purchase_summary|
+  purchase =
+    case purchase_summary.type
+    when "Advanced Purchase", "Service Purchase"
+      DearInventory::AdvancedPurchase.show(id: purchase_summary.id)
+    else
+      DearInventory::Purchase.show(id: purchase_summary.id)
+    end
+end
+```
+
+If you use the `each` helper method, it will automatically return the full record each time. Given it makes n+1 API requests, the time per iteration will be a lot slower than iterating over `records` directly, however, it's much nicer if you intend to load every record anway.
+
+```ruby
+DearInventory::Purchase.().each do |purchase|
+  so_stuff_with_the_full_purchase_record(purchase)
 end
 ```
 
@@ -56,7 +74,7 @@ DearInventory::Purchase.show
 
 | Name | Type | Required |
 | --- | --- | --- |
-| id | String | True |
+| id | String | true |
 | combine_additional_charges | Boolean | false |
 
 ### Response

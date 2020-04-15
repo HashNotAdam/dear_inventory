@@ -19,7 +19,7 @@ DearInventory::Customer.()
 
 ### Response
 
-A paginated set of records.
+The index endpoint returns a paginated set of records.
 
 To see what data is available in the response, you can call the `field` method:
 
