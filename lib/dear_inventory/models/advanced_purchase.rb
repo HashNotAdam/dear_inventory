@@ -142,17 +142,17 @@ module DearInventory
         },
         Invoice: {
           name: :invoice,
-          type: :Hash,
+          type: :Array,
           model: DearInventory::Models::Purchases::Advanced::Invoice,
         },
         CreditNote: {
           name: :credit_note,
-          type: :Hash,
+          type: :Array,
           model: DearInventory::Models::Purchases::Advanced::CreditNote,
         },
         ManualJournals: {
           name: :manual_journals,
-          type: :Hash,
+          type: :Array,
           model: DearInventory::Models::Purchases::Advanced::ManualJournal,
         },
         AdditionalAttributes: {

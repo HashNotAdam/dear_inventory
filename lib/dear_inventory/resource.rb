@@ -28,13 +28,12 @@ module DearInventory
 
     URI_BASE = "https://inventory.dearsystems.com/ExternalApi/v2"
 
-    sig { params(endpoint: T.nilable(String)).returns(String) }
-    def resource_uri(endpoint)
+    sig { params(_endpoint: T.nilable(String)).returns(String) }
+    def resource_uri(_endpoint)
       resource = T.must(self.class.name).split("::").last
+      camel_case = Strings::Urlize.(T.must(resource))
 
-      uri = "#{URI_BASE}/#{T.must(resource).downcase}"
-      uri += "/#{endpoint}" unless endpoint.nil?
-      uri
+      "#{URI_BASE}/#{camel_case}"
     end
   end
 end

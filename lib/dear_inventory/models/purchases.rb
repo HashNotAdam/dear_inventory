@@ -125,7 +125,7 @@ module DearInventory
       def full_record
         case T.unsafe(self).type
         when "Advanced Purchase", "Service Purchase"
-          DearInventory::Purchase.show_advanced(id: T.unsafe(self).id)
+          DearInventory::AdvancedPurchase.show(id: T.unsafe(self).id)
         else
           DearInventory::Purchase.show(id: T.unsafe(self).id)
         end

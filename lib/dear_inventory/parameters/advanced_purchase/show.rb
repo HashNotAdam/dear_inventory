@@ -3,8 +3,8 @@
 
 module DearInventory
   class Parameters
-    module Purchase
-      class ShowAdvanced < DearInventory::Parameters
+    module AdvancedPurchase
+      class Show < DearInventory::Parameters
         extend T::Sig
 
         fields(
