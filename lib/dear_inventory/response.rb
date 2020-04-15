@@ -33,7 +33,8 @@ module DearInventory
 
       raise_error unless success?
 
-      @model = T.let(@request.model.new(body), DearInventory::Model)
+      body_copy = T.cast(body, T.nilable(T::Hash[String, T.untyped]))
+      @model = T.let(@request.model.new(body_copy), DearInventory::Model)
       assign_values
     end
     # rubocop:enable Metrics/AbcSize
@@ -52,9 +53,12 @@ module DearInventory
 
     sig { returns(T.nilable(String)) }
     def error
-      return body.fetch("Exception", nil) if body.respond_to?(:fetch)
+      if body.respond_to?(:fetch)
+        body_copy = T.cast(body, T::Hash[String, T.untyped])
+        return body_copy.fetch("Exception", nil)
+      end
 
-      body
+      T.cast(body, T.nilable(String))
     end
 
     sig { returns(T::Hash[Symbol, String]) }
@@ -178,6 +182,8 @@ module DearInventory
       ).void
     end
     def iterate_over_records(response, block)
+      return if T.unsafe(response).records.nil?
+
       T.unsafe(response).records.each do |record|
         record = record.full_record if load_full_record?
         block.call(record)

@@ -6,9 +6,6 @@ module DearInventory
     extend T::Sig
     extend DearInventory::IsASubclass
 
-    RETRY_DELAY = T.let(5, Integer)
-
-    # rubocop:disable Metrics/MethodLength
     sig do
       params(
         action: Symbol,
@@ -25,20 +22,11 @@ module DearInventory
         uri: resource_uri(endpoint)
       )
       DearInventory::Request.(request)
-    rescue DearInventory::APILimitError
-      DearInventory.config.logger.warn(
-        "The API request limit was reached while fetching #{self.class.name}." \
-        " The request will be tried again in #{RETRY_DELAY} seconds"
-      )
-
-      sleep RETRY_DELAY
-      request(action, model: model, endpoint: endpoint, params: params)
     end
-    # rubocop:enable Metrics/MethodLength
 
     private
 
-    URI_BASE = "https://inventory.dearsystems.com/ExternalApi/v2"
+    URI_BASE = T.let("https://inventory.dearsystems.com/ExternalApi/v2", String)
 
     sig { params(_endpoint: T.nilable(String)).returns(String) }
     def resource_uri(_endpoint)
