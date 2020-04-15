@@ -1,9 +1,26 @@
 # typed: ignore
 # frozen_string_literal: true
 
+require "logger"
+
 module DearInventory
   class Config
     extend T::Sig
+
+    sig { returns(T.nilable(String)) }
+    attr_accessor :account_id
+
+    sig { returns(T.nilable(String)) }
+    attr_accessor :key
+
+    sig { returns(T.untyped) }
+    attr_accessor :logger
+
+    sig { void }
+    def initialize
+      @logger = Logger.new(STDOUT)
+      @logger.level = Logger::WARN
+    end
 
     sig { returns(DearInventory::Environment.class) }
     def environment
@@ -14,12 +31,6 @@ module DearInventory
     def environment=(value)
       DearInventory::Environment.set(value)
     end
-
-    sig { returns(T.nilable(String)) }
-    attr_accessor :account_id
-
-    sig { returns(T.nilable(String)) }
-    attr_accessor :key
 
     sig { params(param: Symbol).returns(String) }
     def require(param)
