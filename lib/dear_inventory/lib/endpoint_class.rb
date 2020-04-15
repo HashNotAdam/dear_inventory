@@ -49,7 +49,7 @@ module DearInventory
         name = ["DearInventory"]
         name << @class_type
         name << @resource_class.name.split("::").last
-        name << @endpoint.capitalize
+        name << @endpoint.split("_").map(&:capitalize).join
         name.join("::")
       end
     end
