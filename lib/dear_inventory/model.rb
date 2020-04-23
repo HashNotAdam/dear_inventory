@@ -1,6 +1,7 @@
 # typed: true
 # frozen_string_literal: true
 
+require "bigdecimal/util"
 require "json"
 
 module DearInventory
