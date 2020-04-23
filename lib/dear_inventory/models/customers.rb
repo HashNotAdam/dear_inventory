@@ -16,7 +16,7 @@ module DearInventory
           type: :Integer,
         },
         CustomerList: {
-          name: :customer_list,
+          name: :customers,
           type: :ResultSet,
           model: DearInventory::Models::Customer,
         }
