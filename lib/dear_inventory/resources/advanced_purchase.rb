@@ -9,7 +9,7 @@ module DearInventory
       # Advanced Purchase
       #
       # @param params [Hash] URL query string parameters that conform to
-      #   DearInventory::Parameters::Purchase::ShowAdvanced
+      #   DearInventory::Parameters::AdvancedPurchase::Show
       sig do
         params(params: T::Hash[Symbol, T.untyped]).
           returns(DearInventory::Response)

@@ -8,9 +8,19 @@ module DearInventory
 
       sig { override.void }
       def call
-        return if instance_variable_get(:@value).present?
+        return if present?(instance_variable_get(:@value))
 
         raise_error("the field is required but no value was provided")
+      end
+
+      private
+
+      def present?(value)
+        !blank?(value)
+      end
+
+      def blank?(value)
+        value&.empty? || !value
       end
     end
   end
