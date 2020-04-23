@@ -55,11 +55,12 @@ end
 
 ## Endpoints
 
-[Customer](https://github.com/HashNotAdam/dear_inventory-ruby/docs/resources/customer.md)
-[Product](https://github.com/HashNotAdam/dear_inventory-ruby/docs/resources/product.md)
-[Purchase](https://github.com/HashNotAdam/dear_inventory-ruby/docs/resources/purchase.md)
-[Advanced Purchase](https://github.com/HashNotAdam/dear_inventory-ruby/docs/resources/advanced_purchase.md)
-[Sale](https://github.com/HashNotAdam/dear_inventory-ruby/docs/resources/sale.md)
+- [Customer](https://github.com/HashNotAdam/dear_inventory-ruby/blob/master/docs/resources/customer.md)
+- [Product](https://github.com/HashNotAdam/dear_inventory-ruby/blob/master/docs/resources/product.md)
+- [Product Availability](https://github.com/HashNotAdam/dear_inventory-ruby/blob/master/docs/resources/product_availability.md)
+- [Purchase](https://github.com/HashNotAdam/dear_inventory-ruby/blob/master/docs/resources/purchase.md)
+- [Advanced Purchase](https://github.com/HashNotAdam/dear_inventory-ruby/blob/master/docs/resources/advanced_purchase.md)
+- [Sale](https://github.com/HashNotAdam/dear_inventory-ruby/blob/master/docs/resources/sale.md)
 
 ## Managing pagination
 
