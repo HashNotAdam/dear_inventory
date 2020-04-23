@@ -13,6 +13,8 @@ RSpec.describe DearInventory do
   end
 
   describe ".configure" do
+    after { DearInventory::Helpers::Config.configure }
+
     it "sets configuration variables passed into a block" do
       described_class.configure do |config|
         config.account_id = "account_id"

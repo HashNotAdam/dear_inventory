@@ -13,3 +13,4 @@
 .rspec_status
 /spec/reports/
 /spec/examples.txt
+/spec/vcr_cassettes

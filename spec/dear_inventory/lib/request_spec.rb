@@ -2,8 +2,7 @@
 # frozen_string_literal: true
 
 RSpec.describe DearInventory::Request do
-  extend DearInventory::Helpers::Config
-  configure
+  after { DearInventory::Helpers::Config.configure }
 
   let(:parameters) do
     DearInventory::Models::Request.new(

@@ -3,11 +3,11 @@
 
 module DearInventory
   module Helpers
-    module Config
+    class Config
       extend T::Sig
 
       sig { void }
-      def configure
+      def self.configure
         DearInventory.configure do |config|
           config.account_id = ENV["ACCOUNT_ID"]
           config.key = ENV["KEY"]

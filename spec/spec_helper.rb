@@ -84,6 +84,8 @@ end
 
 Dir[File.dirname(__FILE__) + "/helpers/**/*.rb"].sort.each { |f| require f }
 
+DearInventory::Helpers::Config.configure
+
 require "vcr"
 VCR.configure do |config|
   config.cassette_library_dir = "spec/vcr_cassettes"
