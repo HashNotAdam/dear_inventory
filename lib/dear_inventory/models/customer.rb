@@ -65,7 +65,7 @@ module DearInventory
         },
         TaxNumber: {
           name: :tax_number,
-          type: :Integer,
+          type: :String,
         },
         CreditLimit: {
           name: :credit_limit,
