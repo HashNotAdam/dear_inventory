@@ -136,7 +136,13 @@ module DearInventory
     sig { returns(T.any(T::Hash[String, T.untyped], String)) }
     def body
       string_body = @response.body.to_s
-      JSON.parse(string_body)
+      parsed_body = JSON.parse(string_body)
+
+      if parsed_body.is_a?(Array)
+        parsed_body.first
+      else
+        parsed_body
+      end
     rescue JSON::ParserError
       string_body
     end
