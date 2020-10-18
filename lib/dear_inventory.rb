@@ -88,6 +88,7 @@ require "dear_inventory/models/sales/invoice"
 require "dear_inventory/models/sale"
 require "dear_inventory/models/sales"
 require "dear_inventory/models/request"
+require "dear_inventory/models/test_request"
 
 require "dear_inventory/validator"
 require "dear_inventory/validators/boolean"
@@ -117,6 +118,7 @@ require "dear_inventory/resources/purchase"
 require "dear_inventory/resources/sale"
 
 require "dear_inventory/response"
+require "dear_inventory/test_response"
 
 require "dear_inventory/version"
 
