@@ -28,12 +28,13 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "http", ">= 4.0.0", "< 5.0"
+  spec.add_dependency "http", ">= 5.0", "< 6.0"
   spec.add_dependency "sorbet-runtime"
 
   spec.add_development_dependency "bundler", "~> 2.0"
   spec.add_development_dependency "byebug"
   spec.add_development_dependency "dotenv"
+  spec.add_development_dependency "pry-byebug"
   spec.add_development_dependency "rake", ">= 12.3.3"
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "rubocop", "~> 0.71"
