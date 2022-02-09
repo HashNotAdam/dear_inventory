@@ -87,3 +87,31 @@ response.fields # [:id, :customer, :customer_id, :contact, :phone, :email, :defa
 id = response.id # abcdef01-2345-6789-abcd-ef0123456789
 ```
 
+
+
+## Delete DELETE
+
+```ruby
+DearInventory::Sale.delete
+```
+
+### Parameters
+
+| Name | Type | Required | Default |
+| --- | --- | --- | --- |
+| id | String | true | N/A |
+| void | Boolean | false | false |
+
+### Response
+
+A new copy of the record is returned. To see what data is available in the
+response, you can call the `field` method:
+
+```ruby
+response = DearInventory::Sale.delete(
+  id: "abcdef01-2345-6789-abcd-ef0123456789",
+  void: true
+)
+response.fields # [:id, :customer, :customer_id, :contact, :phone, :email, :default_account, :skip_quote, :billing_address, :shipping_address, :base_currency, :customer_currency, :tax_rule, :tax_calculation, :terms, :price_tier, :ship_by, :location, :sale_order_date, :last_modified_on, :note, :customer_reference, :cogs_amount, :status, :combined_picking_status, :combined_packing_status, :combined_shipping_status, :fulfilment_status, :combined_invoice_status, :combined_payment_status, :combined_tracking_numbers, :carrier, :currency_rate, :sales_representative, :type, :source_channel, :external_id, :service_only, :quote, :order, :fulfilments, :invoices, :credit_notes, :manual_journals, :additional_attributes, :attachments, :inventory_movements, :transactions]
+id = response.id # abcdef01-2345-6789-abcd-ef0123456789
+```

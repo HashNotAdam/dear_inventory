@@ -58,7 +58,7 @@ module DearInventory
         returns(T::Hash[Symbol, T::Hash[Symbol, T.untyped]])
     end
     def request_params(action, params)
-      if action == :get
+      if %i[get delete].include?(action)
         { params: params.to_h }
       else
         { json: params.to_h }

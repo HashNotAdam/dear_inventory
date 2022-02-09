@@ -106,6 +106,7 @@ require "dear_inventory/parameters/product/index"
 require "dear_inventory/parameters/product_availability/index"
 require "dear_inventory/parameters/purchase/index"
 require "dear_inventory/parameters/purchase/show"
+require "dear_inventory/parameters/sale/delete"
 require "dear_inventory/parameters/sale/index"
 require "dear_inventory/parameters/sale/show"
 

@@ -41,6 +41,23 @@ module DearInventory
           params: params
         )
       end
+
+      # Sale
+      #
+      # @param params [Hash] URL query string parameters that conform to
+      #   DearInventory::Parameters::Sale::Delete
+      sig do
+        params(params: T::Hash[Symbol, T.untyped]).
+          returns(DearInventory::Response)
+      end
+      def delete(params = {})
+        new.request(
+          :delete,
+          endpoint: "delete",
+          model: DearInventory::Models::Sale,
+          params: params
+        )
+      end
     end
 
     private
@@ -49,9 +66,9 @@ module DearInventory
     def resource_uri(endpoint)
       case endpoint
       when "index"
-        self.class.const_get(:URI_BASE) + "/salelist"
-      when "show"
-        self.class.const_get(:URI_BASE) + "/sale"
+        "#{self.class.const_get(:URI_BASE)}/salelist"
+      when "show", "delete"
+        "#{self.class.const_get(:URI_BASE)}/sale"
       end
     end
   end
