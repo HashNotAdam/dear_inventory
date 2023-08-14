@@ -8,6 +8,7 @@
 /Gemfile.lock
 /pkg/
 /tmp/
+.DS_Store
 
 # Specs
 .rspec_status
