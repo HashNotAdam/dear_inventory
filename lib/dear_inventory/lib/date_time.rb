@@ -12,7 +12,7 @@ module DearInventory
 
     sig { returns(String) }
     def to_s
-      @date.strftime("%FT%T%:z")
+      @date.strftime("%FT%T")
     end
   end
 end
